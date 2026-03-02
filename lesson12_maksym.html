@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Урок 12 — Одяг та погода</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #e8eaf0;
+    --blue: #4A90E8;
+    --blue-dark: #2A6AC8;
+    --blue-shadow: #1A4FAA;
+    --yellow: #F5A623;
+    --yellow-dark: #C98F00;
+    --purple: #BB6BD9;
+    --text: #1a1a2e;
+    --text2: #555577;
+    --text3: #9999bb;
+    --correct: #22c55e;
+    --wrong: #ef4444;
+    --card: #ffffff;
+    --radius: 20px;
+    --radius-lg: 24px;
+    --shadow-card: 0 8px 28px rgba(74,144,232,0.12), 0 2px 8px rgba(0,0,0,0.06);
+    --shadow-btn-blue: 0 5px 0 var(--blue-shadow), 0 8px 20px rgba(74,144,232,0.35);
+    --shadow-btn-yellow: 0 5px 0 var(--yellow-dark), 0 8px 20px rgba(245,166,35,0.4);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { color-scheme: light only; }
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+  }
+  /* Decorative background circles like landing */
+  body::before {
+    content: '';
+    position: fixed; top: -60px; right: -80px;
+    width: 340px; height: 340px; border-radius: 50%;
+    background: rgba(255,255,255,0.55);
+    pointer-events: none; z-index: 0;
+  }
+  body::after {
+    content: '';
+    position: fixed; bottom: -60px; left: -60px;
+    width: 260px; height: 260px; border-radius: 50%;
+    background: rgba(255,255,255,0.4);
+    pointer-events: none; z-index: 0;
+  }
+  .container { max-width: 680px; margin: 0 auto; padding: 20px 16px 60px; position: relative; z-index: 1; }
+
+  /* ── HEADER ── */
+  .lesson-header {
+    background: linear-gradient(160deg, #5B9EF7 0%, #4A90E8 60%, #3A7FD4 100%);
+    border-radius: var(--radius-lg); padding: 28px 24px 24px;
+    color: white; text-align: center; margin-bottom: 18px;
+    box-shadow: 0 8px 0 var(--blue-shadow), 0 14px 36px rgba(42,106,200,0.45);
+    position: relative; overflow: hidden;
+  }
+  .lesson-header::before {
+    content: ''; position: absolute; top: -30%; right: -10%;
+    width: 220px; height: 220px;
+    background: rgba(255,255,255,0.1); border-radius: 50%;
+    pointer-events: none;
+  }
+  .lesson-header::after {
+    content: ''; position: absolute; bottom: -40%; left: -5%;
+    width: 180px; height: 180px;
+    background: rgba(255,255,255,0.07); border-radius: 50%;
+    pointer-events: none;
+  }
+  .lesson-badge {
+    background: rgba(255,255,255,0.22);
+    display: inline-block; padding: 4px 16px; border-radius: 20px;
+    font-size: 13px; font-weight: 800; letter-spacing: 1.5px;
+    text-transform: uppercase; margin-bottom: 10px;
+    border: 1.5px solid rgba(255,255,255,0.35);
+  }
+  .lesson-title { font-size: 30px; font-weight: 900; margin-bottom: 6px; position: relative; z-index:1; text-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+  .lesson-sub { font-size: 16px; opacity: 0.9; font-weight: 700; position: relative; z-index:1; }
+  .greeting-mascot { font-size: 54px; display: block; margin-bottom: 10px; animation: bounce 2.5s ease-in-out infinite; position: relative; z-index:1; }
+  @keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+  /* ── PROGRESS ── */
+  .progress-wrap {
+    background: white; border-radius: var(--radius);
+    padding: 16px 20px; margin-bottom: 18px;
+    box-shadow: var(--shadow-card);
+  }
+  .progress-label { display: flex; justify-content: space-between; font-size: 15px; font-weight: 800; color: var(--text2); margin-bottom: 10px; }
+  .progress-label span:last-child { color: var(--blue); }
+  .progress-bar { background: #e8edf7; border-radius: 10px; height: 12px; overflow: hidden; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--blue), #6BAEF8); border-radius: 10px; width: 0%; transition: width 0.6s ease; box-shadow: 0 2px 8px rgba(74,144,232,0.4); }
+  .stars-row { display: flex; gap: 8px; margin-top: 12px; justify-content: center; }
+  .star { font-size: 22px; opacity: 0.18; transition: all 0.3s; filter: grayscale(1); }
+  .star.earned { opacity: 1; filter: drop-shadow(0 0 6px rgba(251,191,36,0.9)); animation: pop 0.4s ease; }
+  @keyframes pop { 0% { transform: scale(0) rotate(-20deg); } 60% { transform: scale(1.4) rotate(5deg); } 100% { transform: scale(1); } }
+
+  /* ── SECTIONS ── */
+  .section {
+    background: white; border-radius: var(--radius);
+    padding: 22px; margin-bottom: 18px;
+    box-shadow: var(--shadow-card);
+    display: none; position: relative;
+  }
+  .section.active { display: block; animation: fadeIn 0.3s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+  .section-icon {
+    width: 48px; height: 48px; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; flex-shrink: 0;
+    background: linear-gradient(135deg, #EBF4FF, #D6EAFF);
+    box-shadow: 0 3px 10px rgba(74,144,232,0.15);
+  }
+  .section-title { font-size: 21px; font-weight: 900; color: var(--text); }
+  .section-desc { font-size: 15px; color: var(--text2); font-weight: 700; margin-top: 2px; }
+
+  /* ── INTRO / GRAMMAR ── */
+  .intro-bubble {
+    background: linear-gradient(135deg, #EBF4FF, #F0EAFF);
+    border: 1.5px solid rgba(74,144,232,0.2);
+    border-radius: 16px; padding: 18px;
+    font-size: 17px; font-weight: 600; line-height: 1.8; color: var(--text);
+  }
+  .intro-bubble em { color: var(--blue); font-style: normal; font-weight: 900; }
+  .grammar-box {
+    background: linear-gradient(135deg, #F5EEFF, #EDE4FF);
+    border: 1.5px solid rgba(187,107,217,0.25);
+    border-left: 4px solid var(--purple);
+    border-radius: 14px; padding: 16px 18px; margin-top: 16px;
+    font-size: 16px; font-weight: 600;
+  }
+  .grammar-box h4 { font-size: 14px; color: #7B2FA0; margin-bottom: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; }
+  /* ── GRAMMAR ROWS ── */
+  .grammar-row { display: flex; gap: 10px; align-items: center; margin: 6px 0; font-size: 16px; padding: 7px 12px; border-radius: 10px; background: rgba(255,255,255,0.65); }
+  .eng { color: var(--blue); font-weight: 900; }
+  .ukr { color: var(--text2); font-weight: 600; }
+  .arrow { color: var(--text3); }
+
+  /* ── WORD CARDS ── */
+  .words-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .word-card {
+    background: white; border: 2px solid #E8F0FB;
+    border-radius: 18px; padding: 18px 10px; text-align: center;
+    cursor: pointer; transition: all 0.2s; user-select: none;
+    box-shadow: 0 4px 14px rgba(74,144,232,0.1), 0 2px 0 #D0DCEE;
+  }
+  .word-card:hover { transform: translateY(-4px); border-color: var(--blue); box-shadow: 0 10px 28px rgba(74,144,232,0.2), 0 2px 0 #D0DCEE; }
+  .word-card:active { transform: translateY(2px); box-shadow: 0 2px 6px rgba(74,144,232,0.1); }
+  .word-card.flipped { background: #EBF4FF; border-color: var(--blue); }
+  .word-emoji { font-size: 36px; margin-bottom: 8px; }
+  .word-eng { font-size: 19px; font-weight: 900; color: var(--blue); }
+  .word-ukr { font-size: 15px; color: var(--text2); font-weight: 700; margin-top: 5px; display: none; }
+  .word-card.flipped .word-ukr { display: block; color: var(--text); }
+  .word-hint { font-size: 12px; color: var(--text3); margin-top: 5px; }
+
+  /* ── MULTIPLE CHOICE ── */
+  .mc-question { margin-bottom: 22px; padding-bottom: 22px; border-bottom: 2px solid #EEF2F8; }
+  .mc-question:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .mc-q { font-size: 18px; font-weight: 800; color: var(--text); margin-bottom: 14px; line-height: 1.5; }
+  .mc-q span.highlight { background: #EBF4FF; color: var(--blue); padding: 2px 10px; border-radius: 8px; font-weight: 900; }
+  .mc-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .mc-opt {
+    background: white; border: 2px solid #E8F0FB;
+    border-radius: 14px; padding: 13px 10px; font-size: 16px; font-weight: 700;
+    cursor: pointer; transition: all 0.15s; text-align: center; color: var(--text);
+    box-shadow: 0 3px 0 #D0DCEE;
+  }
+  .mc-opt:hover:not(.done) { border-color: var(--blue); background: #EBF4FF; transform: translateY(-2px); color: var(--blue); box-shadow: 0 5px 0 #A8C4E8; }
+  .mc-opt:active:not(.done) { transform: translateY(2px); box-shadow: 0 1px 0 #D0DCEE; }
+  .mc-opt.correct { background: #D1FAE5; border-color: var(--correct); color: #065f46; box-shadow: 0 3px 0 #6EE7B7; }
+  .mc-opt.wrong { background: #FEE2E2; border-color: var(--wrong); color: #991B1B; box-shadow: 0 3px 0 #FCA5A5; }
+  .mc-opt.done { cursor: default; }
+  .mc-feedback { font-size: 15px; margin-top: 10px; font-weight: 800; height: 22px; }
+  .mc-feedback.ok { color: var(--correct); }
+  .mc-feedback.err { color: var(--wrong); }
+
+  /* ── FILL IN BLANK ── */
+  .fib-sentence { font-size: 18px; font-weight: 700; color: var(--text); line-height: 2.1; margin-bottom: 10px; }
+  .fib-input {
+    background: white; border: 2px solid #A8C4E8;
+    border-radius: 10px; padding: 5px 10px; font-size: 17px;
+    font-family: 'Nunito', sans-serif; font-weight: 800; color: var(--blue);
+    width: 110px; outline: none; text-align: center; transition: all 0.2s;
+  }
+  .fib-input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(74,144,232,0.15); }
+  .fib-input.correct { border-color: var(--correct); background: #D1FAE5; color: #065f46; }
+  .fib-input.wrong { border-color: var(--wrong); background: #FEE2E2; color: #991B1B; }
+  .fib-item { margin-bottom: 22px; }
+  .fib-item:last-child { margin-bottom: 0; }
+  .fib-check-btn {
+    background: var(--blue); border: none; color: white;
+    border-radius: 12px; padding: 9px 18px; font-size: 16px;
+    font-family: 'Nunito', sans-serif; font-weight: 800; cursor: pointer;
+    margin-left: 8px; margin-top: 8px; transition: all 0.2s;
+    box-shadow: 0 4px 0 var(--blue-shadow), 0 6px 16px rgba(74,144,232,0.3);
+  }
+  .fib-check-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 0 var(--blue-shadow), 0 10px 22px rgba(74,144,232,0.35); }
+  .fib-check-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--blue-shadow); }
+  .fib-check-btn:disabled { background: #CBD5E1; color: #94a3b8; cursor: default; transform: none; box-shadow: none; }
+  .fib-hint { font-size: 14px; color: var(--text3); margin-top: 5px; }
+
+  /* ── MATCH PAIRS ── */
+  .match-wrap { display: flex; gap: 12px; }
+  .match-col { flex: 1; display: flex; flex-direction: column; gap: 8px; }
+  .match-col-title { font-size: 12px; font-weight: 900; color: var(--text3); text-align: center; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 1.5px; }
+  .match-item {
+    background: white; border: 2px solid #E8F0FB; border-radius: 14px;
+    padding: 12px 8px; font-size: 15px; font-weight: 700; text-align: center;
+    cursor: pointer; transition: all 0.15s; min-height: 48px;
+    display: flex; align-items: center; justify-content: center; color: var(--text);
+    box-shadow: 0 3px 0 #D0DCEE;
+  }
+  .match-item:hover:not(.matched):not(.disabled) { background: #EBF4FF; border-color: var(--blue); color: var(--blue); transform: translateY(-2px); }
+  .match-item.selected { background: #F5EEFF; border-color: var(--purple); color: #7B2FA0; transform: translateY(-2px); box-shadow: 0 3px 0 #C9A0E0; }
+  .match-item.matched { background: #D1FAE5; border-color: var(--correct); color: #065f46; box-shadow: 0 3px 0 #6EE7B7; }
+  .match-item.wrong-flash { background: #FEE2E2; border-color: var(--wrong); animation: shake 0.3s; }
+  @keyframes shake { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+  .match-feedback { text-align: center; font-size: 15px; font-weight: 800; margin-top: 12px; height: 22px; }
+
+  /* ── SENTENCE BUILDER ── */
+  .sb-target {
+    min-height: 52px; background: #F0F5FF;
+    border: 2px dashed #A8C4E8; border-radius: 14px;
+    padding: 10px 14px; display: flex; flex-wrap: wrap; gap: 8px;
+    align-items: center; margin-bottom: 12px;
+  }
+  .sb-placeholder { color: var(--text3); font-size: 15px; font-weight: 700; }
+  .sb-words { display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: 12px; }
+  .sb-word {
+    background: var(--blue); border: none; color: white;
+    border-radius: 12px; padding: 9px 16px; font-size: 16px;
+    font-family: 'Nunito', sans-serif; font-weight: 900; cursor: pointer;
+    transition: all 0.15s;
+    box-shadow: 0 4px 0 var(--blue-shadow), 0 6px 14px rgba(74,144,232,0.3);
+  }
+  .sb-word:hover { transform: translateY(-3px); box-shadow: 0 7px 0 var(--blue-shadow), 0 10px 20px rgba(74,144,232,0.35); }
+  .sb-word:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--blue-shadow); }
+  .sb-word.placed { background: #E2E8F0; color: #94a3b8; box-shadow: none; }
+  .sb-placed-word {
+    background: white; border: 2px solid #A8C4E8; color: var(--blue);
+    border-radius: 10px; padding: 5px 12px; font-size: 15px; font-weight: 800;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .sb-placed-word:hover { background: #FEE2E2; border-color: var(--wrong); color: #991B1B; }
+  .sb-result { font-size: 15px; font-weight: 800; height: 22px; margin-top: 8px; }
+  .sb-result.ok { color: var(--correct); }
+  .sb-result.err { color: var(--wrong); }
+  .sb-item { margin-bottom: 26px; }
+  .sb-item:last-child { margin-bottom: 0; }
+  .sb-q { font-size: 15px; font-weight: 700; color: var(--text2); margin-bottom: 10px; }
+  .sb-q em { color: var(--blue); font-style: normal; font-weight: 900; }
+  .sb-btn { background: #D1FAE5; color: #065f46; border: 2px solid #6EE7B7; border-radius: 12px; padding: 8px 16px; font-size: 15px; font-family: 'Nunito', sans-serif; font-weight: 800; cursor: pointer; margin-right: 8px; transition: all 0.2s; }
+  .sb-btn:hover { transform: translateY(-2px); }
+  .sb-reset { background: #FEF3C7; color: #92400E; border: 2px solid #FCD34D; border-radius: 12px; padding: 8px 16px; font-size: 15px; font-family: 'Nunito', sans-serif; font-weight: 800; cursor: pointer; transition: all 0.2s; }
+  .sb-reset:hover { transform: translateY(-2px); }
+
+  /* ── NEXT BUTTON (yellow like landing CTA) ── */
+  .btn-next {
+    display: block; width: 100%;
+    background: linear-gradient(160deg, #FBBF24, #F5A623);
+    color: #7C2D12; border: none; border-radius: 18px; padding: 17px;
+    font-size: 20px; font-family: 'Nunito', sans-serif; font-weight: 900;
+    cursor: pointer; margin-top: 18px;
+    box-shadow: var(--shadow-btn-yellow);
+    transition: all 0.2s; position: relative; top: 0;
+  }
+  .btn-next:hover { top: -3px; box-shadow: 0 8px 0 var(--yellow-dark), 0 14px 28px rgba(245,166,35,0.45); }
+  .btn-next:active { top: 5px; box-shadow: 0 0px 0 var(--yellow-dark); }
+
+  /* ── DONE SCREEN ── */
+  .done-section {
+    background: linear-gradient(160deg, #5B9EF7 0%, #4A90E8 60%, #3A7FD4 100%);
+    border-radius: var(--radius-lg); padding: 36px 24px 32px;
+    color: white; text-align: center;
+    box-shadow: 0 8px 0 var(--blue-shadow), 0 14px 40px rgba(42,106,200,0.45);
+    display: none; animation: fadeIn 0.5s ease; position: relative; overflow: hidden;
+  }
+  .done-section::before {
+    content: ''; position: absolute; top: -40px; right: -40px;
+    width: 220px; height: 220px; border-radius: 50%;
+    background: rgba(255,255,255,0.1); pointer-events: none;
+  }
+  .done-trophy { font-size: 72px; margin-bottom: 12px; animation: spin 0.8s ease; position: relative; z-index: 1; }
+  @keyframes spin { 0% { transform: rotate(-20deg) scale(0); } 100% { transform: rotate(0deg) scale(1); } }
+  .done-title { font-size: 30px; font-weight: 900; margin-bottom: 8px; position: relative; z-index: 1; text-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+  .done-sub { font-size: 17px; opacity: 0.9; font-weight: 700; margin-bottom: 20px; position: relative; z-index: 1; }
+  .score-badge {
+    background: rgba(255,255,255,0.22); border: 2px solid rgba(255,255,255,0.35);
+    border-radius: 18px; padding: 14px 28px; display: inline-block;
+    margin-bottom: 24px; position: relative; z-index: 1;
+  }
+  .score-num { font-size: 50px; font-weight: 900; }
+  .score-label { font-size: 14px; opacity: 0.8; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; }
+  .btn-done {
+    background: linear-gradient(160deg, #FBBF24, #F5A623);
+    color: #7C2D12; border: none; border-radius: 50px;
+    padding: 16px 36px; font-size: 20px;
+    font-family: 'Nunito', sans-serif; font-weight: 900; cursor: pointer;
+    box-shadow: 0 5px 0 var(--yellow-dark), 0 8px 20px rgba(245,166,35,0.4);
+    transition: all 0.2s; position: relative; z-index: 1; top: 0;
+  }
+  .btn-done:hover { top: -3px; box-shadow: 0 8px 0 var(--yellow-dark), 0 14px 28px rgba(245,166,35,0.45); }
+  .btn-done:active { top: 4px; box-shadow: 0 1px 0 var(--yellow-dark); }
+  .wait-text { text-align: center; color: rgba(255,255,255,0.65); font-weight: 700; font-size: 15px; margin-top: 16px; }
+
+  @media (max-width: 480px) {
+    .mc-options { grid-template-columns: 1fr; }
+    .match-item { font-size: 14px; padding: 10px 6px; }
+    .lesson-title { font-size: 24px; }
+    .words-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="lesson-header">
+    <span class="greeting-mascot">🌤️</span>
+    <div class="lesson-badge">Урок 12 з 24</div>
+    <div class="lesson-title">Одяг та погода</div>
+    <div class="lesson-sub">Що одягаємо залежно від погоди</div>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-label">
+      <span>Твій прогрес</span>
+      <span id="progress-text">0 / 5 завдань</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+    <div class="stars-row">
+      <span class="star" id="s1">⭐</span><span class="star" id="s2">⭐</span>
+      <span class="star" id="s3">⭐</span><span class="star" id="s4">⭐</span>
+      <span class="star" id="s5">⭐</span>
+    </div>
+  </div>
+
+  <div id="back-btn" onclick="goBack()" style="display:none;align-items:center;gap:10px;background:rgba(255,255,255,0.75);backdrop-filter:blur(20px);border:1.5px solid rgba(200,215,240,0.6);border-radius:16px;padding:13px 20px;margin-bottom:16px;cursor:pointer;box-shadow:0 4px 16px rgba(100,130,180,0.12);font-size:18px;font-weight:800;color:#4f46e5;transition:all 0.2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">
+    <span style="font-size:22px;">←</span> Повернутись до попереднього завдання
+  </div>
+
+  <!-- SECTION 0: INTRO -->
+  <div class="section active" id="sec0">
+    <div class="section-header">
+      <div class="section-icon" style="background:#eff6ff;border:1px solid rgba(147,197,253,0.4)">🎓</div>
+      <div>
+        <div class="section-title">Привіт, Максиме!</div>
+        <div class="section-desc">Знайомство з темою</div>
+      </div>
+    </div>
+    <div class="intro-bubble">
+      Сьогодні ти вивчиш нову тему: <em>Одяг та погода</em>!<br><br>
+      Уважно переглянь головні фрази, потім натискай на картки щоб вивчити слова. Вперед! 🚀
+    </div>
+    <div class="grammar-box">
+      <h4>📌 Одяг та погода</h4>
+      <div class="grammar-row"><span class="eng">It is cold today.</span><span class="arrow">→</span><span class="ukr">Сьогодні холодно.</span></div>
+<div class="grammar-row"><span class="eng">I wear a jacket.</span><span class="arrow">→</span><span class="ukr">Я одягаю куртку.</span></div>
+<div class="grammar-row"><span class="eng">It is hot and sunny.</span><span class="arrow">→</span><span class="ukr">Спекотно і сонячно.</span></div>
+<div class="grammar-row"><span class="eng">She wears a dress.</span><span class="arrow">→</span><span class="ukr">Вона одягає сукню.</span></div>
+<div class="grammar-row"><span class="eng">What is the weather like?</span><span class="arrow">→</span><span class="ukr">Яка погода?</span></div>
+
+    </div>
+    <button class="btn-next" onclick="goTo(1)">Вивчити нові слова →</button>
+  </div>
+
+  <!-- SECTION 1: WORDS -->
+  <div class="section" id="sec1">
+    <div class="section-header">
+      <div class="section-icon" style="background:#fffbeb;border:1px solid rgba(251,191,36,0.4)">📚</div>
+      <div>
+        <div class="section-title">Нові слова</div>
+        <div class="section-desc">Натисни на картку — слово озвучиться!</div>
+      </div>
+    </div>
+    <div class="words-grid">
+      <div class="word-card" onclick="flipCard(this)">
+        <div class="word-emoji">👕</div>
+        <div class="word-eng">T-shirt</div>
+        <div class="word-ukr">футболка</div>
+        <div class="word-hint">🔊 натисни →</div>
+      </div>
+      <div class="word-card" onclick="flipCard(this)">
+        <div class="word-emoji">🧥</div>
+        <div class="word-eng">jacket</div>
+        <div class="word-ukr">куртка</div>
+        <div class="word-hint">🔊 натисни →</div>
+      </div>
+      <div class="word-card" onclick="flipCard(this)">
+        <div class="word-emoji">👗</div>
+        <div class="word-eng">dress</div>
+        <div class="word-ukr">сукня</div>
+        <div class="word-hint">🔊 натисни →</div>
+      </div>
+      <div class="word-card" onclick="flipCard(this)">
+        <div class="word-emoji">👟</div>
+        <div class="word-eng">shoes</div>
+        <div class="word-ukr">взуття</div>
+        <div class="word-hint">🔊 натисни →</div>
+      </div>
+      <div class="word-card" onclick="flipCard(this)">
+        <div class="word-emoji">🧢</div>
+        <div class="word-eng">hat</div>
+        <div class="word-ukr">шапка / капелюх</div>
+        <div class="word-hint">🔊 натисни →</div>
+      </div>
+      <div class="word-card" onclick="flipCard(this)">
+        <div class="word-emoji">🌧️</div>
+        <div class="word-eng">rain</div>
+        <div class="word-ukr">дощ</div>
+        <div class="word-hint">🔊 натисни →</div>
+      </div>
+      <div class="word-card" onclick="flipCard(this)">
+        <div class="word-emoji">☀️</div>
+        <div class="word-eng">sunny</div>
+        <div class="word-ukr">сонячно</div>
+        <div class="word-hint">🔊 натисни →</div>
+      </div>
+      <div class="word-card" onclick="flipCard(this)">
+        <div class="word-emoji">❄️</div>
+        <div class="word-eng">cold</div>
+        <div class="word-ukr">холодно</div>
+        <div class="word-hint">🔊 натисни →</div>
+      </div>
+    </div>
+    <button class="btn-next" onclick="goTo(2); earnStar(1)">Завдання 1: Вибери відповідь →</button>
+  </div>
+
+  <!-- SECTION 2: MULTIPLE CHOICE -->
+  <div class="section" id="sec2">
+    <div class="section-header">
+      <div class="section-icon" style="background:#f5f3ff;border:1px solid rgba(167,139,250,0.4)">🎯</div>
+      <div>
+        <div class="section-title">Завдання 1</div>
+        <div class="section-desc">Вибери правильний переклад</div>
+      </div>
+    </div>
+    <div class="mc-question">
+      <div class="mc-q">Що означає <span class='highlight'>«jacket»</span>?</div>
+      <div class="mc-options">
+<div class="mc-opt" data-ans="wrong" onclick="checkMC(this,'wrong',0)">шапка</div>
+<div class="mc-opt" data-ans="correct" onclick="checkMC(this,'correct',0)">куртка</div>
+<div class="mc-opt" data-ans="wrong" onclick="checkMC(this,'wrong',0)">сукня</div>
+<div class="mc-opt" data-ans="wrong" onclick="checkMC(this,'wrong',0)">взуття</div>
+      </div>
+      <div class="mc-feedback" id="mcf0"></div>
+    </div>
+    <div class="mc-question">
+      <div class="mc-q">Як сказати <span class='highlight'>«Сьогодні холодно»</span>?</div>
+      <div class="mc-options">
+<div class="mc-opt" data-ans="wrong" onclick="checkMC(this,'wrong',1)">It is hot today</div>
+<div class="mc-opt" data-ans="correct" onclick="checkMC(this,'correct',1)">It is cold today</div>
+<div class="mc-opt" data-ans="wrong" onclick="checkMC(this,'wrong',1)">Today is cold</div>
+<div class="mc-opt" data-ans="wrong" onclick="checkMC(this,'wrong',1)">Cold is today</div>
+      </div>
+      <div class="mc-feedback" id="mcf1"></div>
+    </div>
+    <div class="mc-question">
+      <div class="mc-q">Що означає <span class='highlight'>«sunny»</span>?</div>
+      <div class="mc-options">
+<div class="mc-opt" data-ans="wrong" onclick="checkMC(this,'wrong',2)">дощить</div>
+<div class="mc-opt" data-ans="wrong" onclick="checkMC(this,'wrong',2)">хмарно</div>
+<div class="mc-opt" data-ans="correct" onclick="checkMC(this,'correct',2)">сонячно</div>
+<div class="mc-opt" data-ans="wrong" onclick="checkMC(this,'wrong',2)">вітряно</div>
+      </div>
+      <div class="mc-feedback" id="mcf2"></div>
+    </div>
+    <div class="mc-question">
+      <div class="mc-q">Як сказати <span class='highlight'>«Я одягаю шапку»</span>?</div>
+      <div class="mc-options">
+<div class="mc-opt" data-ans="wrong" onclick="checkMC(this,'wrong',3)">I wear a dress</div>
+<div class="mc-opt" data-ans="wrong" onclick="checkMC(this,'wrong',3)">I wear shoes</div>
+<div class="mc-opt" data-ans="correct" onclick="checkMC(this,'correct',3)">I wear a hat</div>
+<div class="mc-opt" data-ans="wrong" onclick="checkMC(this,'wrong',3)">I have a hat</div>
+      </div>
+      <div class="mc-feedback" id="mcf3"></div>
+    </div>
+
+    <button class="btn-next" id="btn2" onclick="goTo(3); earnStar(2)" style="display:none">Завдання 2: Заповни пропуск →</button>
+    <div id="mc-wait" class="wait-text">👆 Відповідай на всі запитання, щоб продовжити</div>
+  </div>
+
+  <!-- SECTION 3: FILL IN BLANK -->
+  <div class="section" id="sec3">
+    <div class="section-header">
+      <div class="section-icon" style="background:#ecfdf5;border:1px solid rgba(110,231,183,0.4)">✏️</div>
+      <div>
+        <div class="section-title">Завдання 2</div>
+        <div class="section-desc">Заповни пропуск — введи потрібне слово</div>
+      </div>
+    </div>
+    <div class="fib-item">
+      <div class="fib-sentence">❄️ It is <input class='fib-input' id='fib0' placeholder='???'  autocomplete='off' autocorrect='off' autocapitalize='off' spellcheck='false'> today.</div>
+      <div class="fib-hint">Підказка: холодно = ?</div>
+      <br><button class="fib-check-btn" onclick="checkFib(0,'cold','cold')">Перевірити</button>
+      <div class="mc-feedback" id="fibf0"></div>
+    </div>
+    <div class="fib-item">
+      <div class="fib-sentence">🧥 I wear a <input class='fib-input' id='fib1' placeholder='???'  autocomplete='off' autocorrect='off' autocapitalize='off' spellcheck='false'>.</div>
+      <div class="fib-hint">Підказка: куртка = ?</div>
+      <br><button class="fib-check-btn" onclick="checkFib(1,'jacket','jacket')">Перевірити</button>
+      <div class="mc-feedback" id="fibf1"></div>
+    </div>
+    <div class="fib-item">
+      <div class="fib-sentence">☀️ It is hot and <input class='fib-input' id='fib2' placeholder='???'  autocomplete='off' autocorrect='off' autocapitalize='off' spellcheck='false'>.</div>
+      <div class="fib-hint">Підказка: сонячно = ?</div>
+      <br><button class="fib-check-btn" onclick="checkFib(2,'sunny','sunny')">Перевірити</button>
+      <div class="mc-feedback" id="fibf2"></div>
+    </div>
+    <div class="fib-item">
+      <div class="fib-sentence">🌧️ It is <input class='fib-input' id='fib3' placeholder='???'  autocomplete='off' autocorrect='off' autocapitalize='off' spellcheck='false'> today.</div>
+      <div class="fib-hint">Підказка: дощить = ?</div>
+      <br><button class="fib-check-btn" onclick="checkFib(3,'raining','raining')">Перевірити</button>
+      <div class="mc-feedback" id="fibf3"></div>
+    </div>
+
+    <button class="btn-next" id="btn3" onclick="goTo(4); earnStar(3)" style="display:none">Завдання 3: Склади речення →</button>
+    <div id="fib-wait" class="wait-text">👆 Перевір усі речення, щоб продовжити</div>
+  </div>
+
+  <!-- SECTION 4: SENTENCE BUILDER -->
+  <div class="section" id="sec4">
+    <div class="section-header">
+      <div class="section-icon" style="background:#fffbeb;border:1px solid rgba(251,191,36,0.4)">🧩</div>
+      <div>
+        <div class="section-title">Завдання 3</div>
+        <div class="section-desc">Склади речення — натисни на слова у правильному порядку</div>
+      </div>
+    </div>
+    <div class="sb-item" id="sbi0">
+      <div class="sb-q">Склади речення: <em>««Яка погода?»»</em></div>
+      <div class="sb-target" id="sbt0"><span class="sb-placeholder">Натискай на слова нижче...</span></div>
+      <div class="sb-words" id="sbw0"><button class="sb-word" onclick="sbClick(0,'weather')">weather</button><button class="sb-word" onclick="sbClick(0,'What')">What</button><button class="sb-word" onclick="sbClick(0,'like')">like</button><button class="sb-word" onclick="sbClick(0,'is')">is</button><button class="sb-word" onclick="sbClick(0,'the')">the</button></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="sb-btn" onclick="sbCheck(0,'What is the weather like')">✅ Перевірити</button>
+        <button class="sb-reset" onclick="sbReset(0)">↩️ Скинути</button>
+      </div>
+      <div class="sb-result" id="sbr0"></div>
+    </div>
+    <div class="sb-item" id="sbi1">
+      <div class="sb-q">Склади речення: <em>««Вона одягає сукню»»</em></div>
+      <div class="sb-target" id="sbt1"><span class="sb-placeholder">Натискай на слова нижче...</span></div>
+      <div class="sb-words" id="sbw1"><button class="sb-word" onclick="sbClick(1,'dress')">dress</button><button class="sb-word" onclick="sbClick(1,'She')">She</button><button class="sb-word" onclick="sbClick(1,'a')">a</button><button class="sb-word" onclick="sbClick(1,'wears')">wears</button></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="sb-btn" onclick="sbCheck(1,'She wears a dress')">✅ Перевірити</button>
+        <button class="sb-reset" onclick="sbReset(1)">↩️ Скинути</button>
+      </div>
+      <div class="sb-result" id="sbr1"></div>
+    </div>
+    <div class="sb-item" id="sbi2">
+      <div class="sb-q">Склади речення: <em>««Я одягаю взуття»»</em></div>
+      <div class="sb-target" id="sbt2"><span class="sb-placeholder">Натискай на слова нижче...</span></div>
+      <div class="sb-words" id="sbw2"><button class="sb-word" onclick="sbClick(2,'shoes')">shoes</button><button class="sb-word" onclick="sbClick(2,'I')">I</button><button class="sb-word" onclick="sbClick(2,'my')">my</button><button class="sb-word" onclick="sbClick(2,'wear')">wear</button></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="sb-btn" onclick="sbCheck(2,'I wear my shoes')">✅ Перевірити</button>
+        <button class="sb-reset" onclick="sbReset(2)">↩️ Скинути</button>
+      </div>
+      <div class="sb-result" id="sbr2"></div>
+    </div>
+
+    <button class="btn-next" id="btn4" onclick="goTo(5); earnStar(4)" style="display:none">Завдання 4: З'єднай пари →</button>
+    <div id="sb-wait" class="wait-text">👆 Склади всі речення, щоб продовжити</div>
+  </div>
+
+  <!-- SECTION 5: MATCH PAIRS -->
+  <div class="section" id="sec5">
+    <div class="section-header">
+      <div class="section-icon" style="background:#eff6ff;border:1px solid rgba(147,197,253,0.4)">🔗</div>
+      <div>
+        <div class="section-title">Завдання 4</div>
+        <div class="section-desc">З'єднай англійське слово з перекладом</div>
+      </div>
+    </div>
+    <div class="match-wrap">
+      <div class="match-col">
+        <div class="match-col-title">🇬🇧 Англійська</div>
+        <div class="match-item" id="ml0" onclick="matchClick('left',0,'tshirt')">T-shirt</div>
+<div class="match-item" id="ml1" onclick="matchClick('left',1,'jacket')">jacket</div>
+<div class="match-item" id="ml2" onclick="matchClick('left',2,'dress')">dress</div>
+<div class="match-item" id="ml3" onclick="matchClick('left',3,'hat')">hat</div>
+<div class="match-item" id="ml4" onclick="matchClick('left',4,'cold')">cold</div>
+      </div>
+      <div class="match-col">
+        <div class="match-col-title">🇺🇦 Українська</div>
+        <div class="match-item" id="mr0" onclick="matchClick('right',0,'cold')">холодно</div>
+<div class="match-item" id="mr1" onclick="matchClick('right',1,'hat')">шапка</div>
+<div class="match-item" id="mr2" onclick="matchClick('right',2,'dress')">сукня</div>
+<div class="match-item" id="mr3" onclick="matchClick('right',3,'jacket')">куртка</div>
+<div class="match-item" id="mr4" onclick="matchClick('right',4,'tshirt')">футболка</div>
+      </div>
+    </div>
+    <div class="match-feedback" id="match-fb"></div>
+    <button class="btn-next" id="btn5" onclick="showDone(); earnStar(5)" style="display:none">🎉 Завершити урок!</button>
+    <div id="match-wait" class="wait-text">👆 З'єднай усі пари, щоб завершити</div>
+  </div>
+
+  <!-- DONE -->
+  <div class="done-section" id="done-section">
+    <div class="done-trophy">🏆</div>
+    <div class="done-title">Максиме, ти молодець!</div>
+    <div class="done-sub">Урок 12 успішно завершено! 🎊 Наступний — Урок 13!</div>
+    <div class="score-badge">
+      <div class="score-num" id="final-score">5/5</div>
+      <div class="score-label">правильних відповідей</div>
+    </div><br>
+    <button class="btn-done" onclick="sendResult()">✅ Виконав!</button>
+    <div style="font-size:14px;opacity:0.6;margin-top:12px;position:relative;z-index:1;">Батьки отримають результат на пошту</div>
+  </div>
+
+
+</div>
+<script>
+const state = {
+  currentSection: 0, stars: 0,
+  mcDone: [false,false,false,false],
+  fibDone: new Array(4).fill(false),
+  sbData: [{placed:[]},{placed:[]},{placed:[]}],
+  totalScore: 0, totalMax: 0, matchPairs: 0
+};
+const sectionHistory = [];
+
+// ══════════════════════════════════════════════
+// ── AUDIO ────────────────────────────────────
+const AudioCtx = window.AudioContext || window.webkitAudioContext;
+let actx = null;
+function getCtx() { if(!actx) actx = new AudioCtx(); return actx; }
+function playCorrect() {
+  try {
+    const ctx = getCtx();
+    [[523,0],[659,0.12],[784,0.24],[1047,0.38]].forEach(([freq,when]) => {
+      const osc = ctx.createOscillator(), gain = ctx.createGain();
+      osc.connect(gain); gain.connect(ctx.destination);
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, ctx.currentTime+when);
+      gain.gain.setValueAtTime(0.3, ctx.currentTime+when);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime+when+0.4);
+      osc.start(ctx.currentTime+when); osc.stop(ctx.currentTime+when+0.4);
+    });
+  } catch(e){}
+}
+function playWrong() {
+  try {
+    const ctx = getCtx();
+    [[330,0],[220,0.15]].forEach(([freq,when]) => {
+      const osc = ctx.createOscillator(), gain = ctx.createGain();
+      osc.connect(gain); gain.connect(ctx.destination);
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(freq, ctx.currentTime+when);
+      gain.gain.setValueAtTime(0.18, ctx.currentTime+when);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime+when+0.25);
+      osc.start(ctx.currentTime+when); osc.stop(ctx.currentTime+when+0.25);
+    });
+  } catch(e){}
+}
+function launchConfetti() {
+  const emojis = ['🎉','⭐','🎊','✨','🌟','💫','🎈','🏆'];
+  for(let i=0;i<22;i++) {
+    const el = document.createElement('div');
+    el.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+    el.style.cssText = `position:fixed;font-size:${22+Math.random()*18}px;left:${Math.random()*100}vw;top:-60px;z-index:9999;pointer-events:none;animation:confettiFall ${1.6+Math.random()*1.4}s ease-in forwards;animation-delay:${Math.random()*0.5}s;`;
+    document.body.appendChild(el);
+    setTimeout(()=>el.remove(), 3500);
+  }
+}
+(function(){
+  const s=document.createElement('style');
+  s.textContent='@keyframes confettiFall{0%{transform:translateY(0) rotate(0deg) scale(1);opacity:1}80%{opacity:1}100%{transform:translateY(105vh) rotate(720deg) scale(0.5);opacity:0}}';
+  document.head.appendChild(s);
+})();
+
+function speak(text) {
+  if (!window.speechSynthesis) return;
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US'; u.rate = 0.8; u.pitch = 1.0;
+  const voices = window.speechSynthesis.getVoices();
+  const preferred = ['Google US English','Google UK English Male','Aaron','Daniel','Alex','Tom','Arthur','Evan'];
+  let chosen = null;
+  for (const name of preferred) { chosen = voices.find(v => v.name === name); if (chosen) break; }
+  if (!chosen) chosen = voices.find(v => v.lang.startsWith('en') && v.name.toLowerCase().includes('male'));
+  if (!chosen) chosen = voices.find(v => v.lang === 'en-US') || voices.find(v => v.lang.startsWith('en'));
+  if (chosen) u.voice = chosen;
+  window.speechSynthesis.speak(u);
+}
+if (window.speechSynthesis) { window.speechSynthesis.getVoices(); window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices(); }
+
+function goTo(n) {
+  document.getElementById('sec'+state.currentSection).classList.remove('active');
+  document.getElementById('sec'+n).classList.add('active');
+  document.getElementById('sec'+n).scrollIntoView({behavior:'smooth',block:'start'});
+  sectionHistory.push(state.currentSection);
+  state.currentSection = n;
+  updateProgress(); updateBackBtn();
+}
+function goBack() {
+  if (!sectionHistory.length) return;
+  const prev = sectionHistory.pop();
+  document.getElementById('sec'+state.currentSection).classList.remove('active');
+  document.getElementById('sec'+prev).classList.add('active');
+  document.getElementById('sec'+prev).scrollIntoView({behavior:'smooth',block:'start'});
+  state.currentSection = prev;
+  updateProgress(); updateBackBtn();
+}
+function updateBackBtn() {
+  const b = document.getElementById('back-btn');
+  if (b) b.style.display = sectionHistory.length > 0 ? 'flex' : 'none';
+}
+function updateProgress() {
+  const pct = (state.stars/5)*100;
+  document.getElementById('progress-fill').style.width = pct+'%';
+  document.getElementById('progress-text').textContent = state.stars+' / 5 завдань';
+}
+function earnStar(n) {
+  if (state.stars < n) { state.stars = n; document.getElementById('s'+n).classList.add('earned'); updateProgress(); }
+}
+function flipCard(el) {
+  el.classList.toggle('flipped');
+  const hint = el.querySelector('.word-hint');
+  if (el.classList.contains('flipped')) {
+    hint.textContent = '🔊 звучить...';
+    speak(el.querySelector('.word-eng').textContent);
+    setTimeout(() => { if (el.classList.contains('flipped')) hint.textContent = 'натисни ще раз →'; }, 1400);
+  } else { hint.textContent = '🔊 натисни →'; }
+}
+const mcAnswered = [false,false,false,false];
+function checkMC(el, type, qIdx) {
+  if (mcAnswered[qIdx]) return;
+  mcAnswered[qIdx] = true;
+  const opts = el.parentElement.querySelectorAll('.mc-opt');
+  opts.forEach(o => o.classList.add('done'));
+  el.classList.add(type);
+  const fb = document.getElementById('mcf'+qIdx);
+  if (type==='correct') { fb.textContent='✅ Правильно! Молодець!'; fb.className='mc-feedback ok'; state.totalScore++; playCorrect(); launchConfetti(); }
+  else { fb.textContent="❌ Не зовсім. Запам'ятай правильну відповідь!"; fb.className='mc-feedback err'; opts.forEach(o => { if(o.dataset.ans==='correct') o.classList.add('correct'); }); }
+  state.totalMax++;
+  if (mcAnswered.every(v=>v)) { document.getElementById('btn2').style.display='block'; document.getElementById('mc-wait').style.display='none'; earnStar(2); }
+}
+const fibAnswered = new Array(4).fill(false);
+function checkFib(idx, answer, display) {
+  if (fibAnswered[idx]) return;
+  fibAnswered[idx] = true;
+  const inp = document.getElementById('fib'+idx);
+  const fb  = document.getElementById('fibf'+idx);
+  const btn = inp.closest('.fib-item').querySelector('.fib-check-btn');
+  btn.disabled = true; inp.disabled = true;
+  state.totalMax++;
+  if (inp.value.trim().toLowerCase() === answer) {
+    inp.classList.add('correct'); fb.textContent='✅ Правильно!'; fb.className='mc-feedback ok'; state.totalScore++; playCorrect(); launchConfetti();
+  } else {
+    inp.classList.add('wrong'); fb.textContent='❌ Правильна відповідь: '+display; fb.className='mc-feedback err'; inp.value=display; playWrong();
+  }
+  if (fibAnswered.every(v=>v)) { document.getElementById('btn3').style.display='block'; document.getElementById('fib-wait').style.display='none'; earnStar(3); }
+}
+function sbClick(idx, word) {
+  const d = state.sbData[idx];
+  let placed = false;
+  document.getElementById('sbw'+idx).querySelectorAll('.sb-word').forEach(b => {
+    if (!placed && b.textContent===word && !b.classList.contains('placed')) { b.classList.add('placed'); placed=true; }
+  });
+  if (placed) { d.placed.push(word); renderTarget(idx); }
+}
+function renderTarget(idx) {
+  const d = state.sbData[idx];
+  const t = document.getElementById('sbt'+idx);
+  if (!d.placed.length) { t.innerHTML='<span class="sb-placeholder">Натискай на слова нижче...</span>'; return; }
+  t.innerHTML = d.placed.map((w,i) => `<span class="sb-placed-word" onclick="sbRemove(${idx},${i})">${w}</span>`).join('');
+}
+function sbRemove(idx, i) {
+  const d = state.sbData[idx];
+  const word = d.placed[i];
+  d.placed.splice(i,1);
+  let found = false;
+  document.getElementById('sbw'+idx).querySelectorAll('.sb-word').forEach(b => {
+    if (!found && b.textContent===word && b.classList.contains('placed')) { found=true; b.classList.remove('placed'); }
+  });
+  renderTarget(idx);
+}
+function sbReset(idx) {
+  state.sbData[idx].placed = [];
+  document.getElementById('sbw'+idx).querySelectorAll('.sb-word').forEach(b=>b.classList.remove('placed'));
+  renderTarget(idx); document.getElementById('sbr'+idx).textContent='';
+}
+const sbChecked = new Array(3).fill(false);
+function sbCheck(idx, correct) {
+  const answer = state.sbData[idx].placed.join(' ');
+  const res = document.getElementById('sbr'+idx);
+  state.totalMax++;
+  if (answer===correct) {
+    res.textContent='✅ Чудово! Правильно!'; res.className='sb-result ok'; state.totalScore++; playCorrect(); launchConfetti();
+  } else {
+    res.textContent='❌ Правильно: «'+correct+'»'; res.className='sb-result err';
+    sbReset(idx);
+    setTimeout(() => { state.sbData[idx].placed=correct.split(' '); renderTarget(idx); document.getElementById('sbw'+idx).querySelectorAll('.sb-word').forEach(b=>b.style.pointerEvents='none'); },600);
+  }
+  sbChecked[idx] = true;
+  document.getElementById('sbw'+idx).querySelectorAll('.sb-word').forEach(b=>b.style.pointerEvents='none');
+  if (sbChecked.every(v=>v)) { document.getElementById('btn4').style.display='block'; document.getElementById('sb-wait').style.display='none'; earnStar(4); }
+}
+let matchLeftSel=null, matchRightSel=null;
+function matchClick(side, idx, key) {
+  const elId = side==='left'?'ml'+idx:'mr'+idx;
+  const el = document.getElementById(elId);
+  if (el.classList.contains('matched')) return;
+  if (side==='left') { if(matchLeftSel!==null) document.getElementById('ml'+matchLeftSel.idx).classList.remove('selected'); matchLeftSel={idx,key}; el.classList.add('selected'); }
+  else { if(matchRightSel!==null) document.getElementById('mr'+matchRightSel.idx).classList.remove('selected'); matchRightSel={idx,key}; el.classList.add('selected'); }
+  if (matchLeftSel && matchRightSel) {
+    const lEl=document.getElementById('ml'+matchLeftSel.idx), rEl=document.getElementById('mr'+matchRightSel.idx);
+    if (matchLeftSel.key===matchRightSel.key) {
+      lEl.classList.remove('selected'); lEl.classList.add('matched');
+      rEl.classList.remove('selected'); rEl.classList.add('matched');
+      state.matchPairs++; state.totalScore++; state.totalMax++;
+      document.getElementById('match-fb').style.color='var(--correct)';
+      document.getElementById('match-fb').textContent='✅ Правильна пара! ('+state.matchPairs+'/5)'; playCorrect(); launchConfetti();
+      if (state.matchPairs===5) { document.getElementById('btn5').style.display='block'; document.getElementById('match-wait').style.display='none'; earnStar(5); }
+    } else {
+      state.totalMax++;
+      lEl.classList.add('wrong-flash'); rEl.classList.add('wrong-flash');
+      document.getElementById('match-fb').style.color='var(--wrong)';
+      document.getElementById('match-fb').textContent='❌ Спробуй ще!'; playWrong();
+      setTimeout(()=>{lEl.classList.remove('selected','wrong-flash');rEl.classList.remove('selected','wrong-flash');},500);
+    }
+    matchLeftSel=null; matchRightSel=null;
+  }
+}
+function showDone() {
+  document.getElementById('sec5').classList.remove('active');
+  const d=document.getElementById('done-section'); d.style.display='block';
+  d.scrollIntoView({behavior:'smooth',block:'start'});
+  document.getElementById('final-score').textContent=state.totalScore+'/'+state.totalMax;
+}
+function sendResult() {
+  const now=new Date();
+  const dateStr=now.toLocaleDateString('uk-UA')+' '+now.toLocaleTimeString('uk-UA',{hour:'2-digit',minute:'2-digit'});
+  const pct=Math.round((state.totalScore/state.totalMax)*100);
+  const subj=encodeURIComponent('📚 Максим виконав Урок 12 — Одяг та погода');
+  const body=encodeURIComponent(
+    '✅ УРОК 12 ВИКОНАНО!\n\n'+
+    '👦 Учень: Максим\n'+
+    '📖 Тема: Одяг та погода\n'+
+    '📅 Дата та час: '+dateStr+'\n\n'+
+    '📊 РЕЗУЛЬТАТ:\n'+
+    '  Правильних відповідей: '+state.totalScore+' з '+state.totalMax+'\n'+
+    '  Відсоток: '+pct+'%\n\n'+
+    '⭐ Всі завдання виконано!'
+  );
+  window.location.href='mailto:labunuszn@gmail.com?subject='+subj+'&body='+body;
+}
+</script>
+</body>
+</html>
