@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="uk" style="background:#5BC8F5;color-scheme:light only;">
 <head>
 <meta charset="UTF-8">
@@ -12,186 +13,187 @@
 :root { color-scheme: light only; }
 
 /* ── FORCE ALL TEXT PRINTED / NON-ITALIC GLOBALLY ── */
-* {
+
+- {
   font-style: normal !important;
   font-synthesis: none !important;
   -webkit-font-smoothing: antialiased;
-}
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html {
-  color-scheme: light only !important;
-  background: #5BC8F5 !important;
-  min-height: 100%;
+color-scheme: light only !important;
+background: #5BC8F5 !important;
+min-height: 100%;
 }
 
 body {
-  font-family: 'Nunito', sans-serif !important;
-  background: #5BC8F5 !important;
-  color: #1a1a2e !important;
-  min-height: 100vh;
-  padding: 20px 16px 50px;
-  -webkit-text-size-adjust: 100%;
+font-family: ‘Nunito’, sans-serif !important;
+background: #5BC8F5 !important;
+color: #1a1a2e !important;
+min-height: 100vh;
+padding: 20px 16px 50px;
+-webkit-text-size-adjust: 100%;
 }
 
 /* ── WHITE CARD WRAPPER ── */
 .card-wrap {
-  max-width: 460px;
-  margin: 0 auto;
-  background: #ffffff;
-  border-radius: 28px;
-  overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.22), 0 8px 20px rgba(0,0,0,0.12);
+max-width: 460px;
+margin: 0 auto;
+background: #ffffff;
+border-radius: 28px;
+overflow: hidden;
+box-shadow: 0 20px 60px rgba(0,0,0,0.22), 0 8px 20px rgba(0,0,0,0.12);
 }
 
 /* ── LOGO BAR ── */
 .logo-bar {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 22px 22px 16px;
-  background: #ffffff;
+display: flex;
+align-items: center;
+gap: 12px;
+padding: 22px 22px 16px;
+background: #ffffff;
 }
 .logo-icon {
-  width: 46px; height: 46px;
-  border-radius: 13px;
-  background: linear-gradient(145deg, #5B9EF7, #3B6FD8);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 25px; flex-shrink: 0;
-  box-shadow: 0 3px 0 #1A4FAA;
+width: 46px; height: 46px;
+border-radius: 13px;
+background: linear-gradient(145deg, #5B9EF7, #3B6FD8);
+display: flex; align-items: center; justify-content: center;
+font-size: 25px; flex-shrink: 0;
+box-shadow: 0 3px 0 #1A4FAA;
 }
-.logo-name { font-family: 'Fredoka One', cursive; font-size: 26px; line-height: 1; }
+.logo-name { font-family: ‘Fredoka One’, cursive; font-size: 26px; line-height: 1; }
 .ln-e { color: #2B6FDB; }
 .ln-q { color: #E8611A; }
 
 /* ── AGE BADGE ── */
 .age-badge {
-  display: inline-flex; align-items: center; gap: 9px;
-  background: #f5f5f5; border-radius: 50px;
-  padding: 9px 20px; margin: 0 22px 4px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+display: inline-flex; align-items: center; gap: 9px;
+background: #f5f5f5; border-radius: 50px;
+padding: 9px 20px; margin: 0 22px 4px;
+box-shadow: 0 2px 8px rgba(0,0,0,0.07);
 }
 .age-dot {
-  width: 11px; height: 11px; border-radius: 50%;
-  background: #FF6B8A; flex-shrink: 0;
-  animation: dp 1.5s ease-in-out infinite;
+width: 11px; height: 11px; border-radius: 50%;
+background: #FF6B8A; flex-shrink: 0;
+animation: dp 1.5s ease-in-out infinite;
 }
 @keyframes dp { 0%,100%{transform:scale(1)} 50%{transform:scale(1.5);opacity:.6} }
 .age-text { font-size: 13px; font-weight: 900; color: #888; text-transform: uppercase; letter-spacing: 1.5px; }
 
 /* ── HERO TITLE SECTION ── */
 .hero-section {
-  position: relative;
-  padding: 18px 22px 26px;
-  overflow: hidden;
-  /* gradient background matching the photo */
-  background: linear-gradient(160deg, #d8ecf8 0%, #e8f4fb 40%, #f0f8fc 70%, #f8f8f8 100%);
+position: relative;
+padding: 18px 22px 26px;
+overflow: hidden;
+/* gradient background matching the photo */
+background: linear-gradient(160deg, #d8ecf8 0%, #e8f4fb 40%, #f0f8fc 70%, #f8f8f8 100%);
 }
 /* big decorative circle in top-right */
 .hero-section::before {
-  content: '';
-  position: absolute;
-  top: -60px; right: -60px;
-  width: 260px; height: 260px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.55);
-  pointer-events: none;
+content: ‘’;
+position: absolute;
+top: -60px; right: -60px;
+width: 260px; height: 260px;
+border-radius: 50%;
+background: rgba(255,255,255,0.55);
+pointer-events: none;
 }
 .hero-section::after {
-  content: '';
-  position: absolute;
-  bottom: -40px; left: -40px;
-  width: 180px; height: 180px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.35);
-  pointer-events: none;
+content: ‘’;
+position: absolute;
+bottom: -40px; left: -40px;
+width: 180px; height: 180px;
+border-radius: 50%;
+background: rgba(255,255,255,0.35);
+pointer-events: none;
 }
 
 /* TITLE LINES — 3D plastic letters like photo */
 .ht {
-  font-family: 'Nunito', sans-serif !important;
-  font-style: normal !important;
-  font-weight: 900 !important;
-  display: block;
-  line-height: 1.05;
-  position: relative;
-  z-index: 1;
+font-family: ‘Nunito’, sans-serif !important;
+font-style: normal !important;
+font-weight: 900 !important;
+display: block;
+line-height: 1.05;
+position: relative;
+z-index: 1;
 }
 
-/* "Англійська," — light sky-blue, large, 3D extruded shadow */
+/* “Англійська,” — light sky-blue, large, 3D extruded shadow */
 .ht-1 {
-  font-size: 64px;
-  color: #7EC8F0;
-  text-shadow:
-    0 3px 0 #4A9EC8,
-    0 5px 0 #3A80A8,
-    0 7px 0 rgba(58,128,168,0.4),
-    0 10px 18px rgba(74,180,232,0.2);
-  margin-bottom: 0px;
-  letter-spacing: -1px;
+font-size: 64px;
+color: #7EC8F0;
+text-shadow:
+0 3px 0 #4A9EC8,
+0 5px 0 #3A80A8,
+0 7px 0 rgba(58,128,168,0.4),
+0 10px 18px rgba(74,180,232,0.2);
+margin-bottom: 0px;
+letter-spacing: -1px;
 }
 
-/* "яку" — small lavender, soft 3D */
+/* “яку” — small lavender, soft 3D */
 .ht-2 {
-  font-size: 52px;
-  color: #C8B8E8;
-  text-shadow:
-    0 3px 0 #9A88C0,
-    0 5px 0 #7A68A0,
-    0 7px 0 rgba(122,104,160,0.3),
-    0 9px 14px rgba(168,148,216,0.15);
-  margin-bottom: 10px;
+font-size: 52px;
+color: #C8B8E8;
+text-shadow:
+0 3px 0 #9A88C0,
+0 5px 0 #7A68A0,
+0 7px 0 rgba(122,104,160,0.3),
+0 9px 14px rgba(168,148,216,0.15);
+margin-bottom: 10px;
 }
 
-/* "полюблять" — white on yellow pill, full-width */
+/* “полюблять” — white on yellow pill, full-width */
 .ht-yellow-pill {
-  display: block;
-  background: linear-gradient(180deg, #FFD84D 0%, #F5C200 100%);
-  border-radius: 20px;
-  padding: 8px 20px 16px;
-  margin-bottom: 8px;
-  box-shadow:
-    0 6px 0 #C49500,
-    0 10px 24px rgba(245,194,0,0.4);
-  position: relative; z-index: 1;
-  text-align: left;
+display: block;
+background: linear-gradient(180deg, #FFD84D 0%, #F5C200 100%);
+border-radius: 20px;
+padding: 8px 20px 16px;
+margin-bottom: 8px;
+box-shadow:
+0 6px 0 #C49500,
+0 10px 24px rgba(245,194,0,0.4);
+position: relative; z-index: 1;
+text-align: left;
 }
 .ht-3 {
-  font-size: 62px;
-  color: #ffffff;
-  text-shadow:
-    0 3px 0 rgba(160,120,0,0.45),
-    0 5px 0 rgba(140,100,0,0.3),
-    0 8px 16px rgba(0,0,0,0.1);
-  letter-spacing: -1px;
+font-size: 62px;
+color: #ffffff;
+text-shadow:
+0 3px 0 rgba(160,120,0,0.45),
+0 5px 0 rgba(140,100,0,0.3),
+0 8px 16px rgba(0,0,0,0.1);
+letter-spacing: -1px;
 }
 
-/* "твої діти" — saturated blue, huge, strong 3D */
+/* “твої діти” — saturated blue, huge, strong 3D */
 .ht-4 {
-  font-size: 72px;
-  color: #2E7FE0;
-  text-shadow:
-    0 3px 0 #1A5AAA,
-    0 5px 0 #104090,
-    0 7px 0 #0A3078,
-    0 9px 0 rgba(10,48,120,0.4),
-    0 12px 20px rgba(30,80,200,0.25);
-  letter-spacing: -2px;
-  margin-top: 0px;
+font-size: 72px;
+color: #2E7FE0;
+text-shadow:
+0 3px 0 #1A5AAA,
+0 5px 0 #104090,
+0 7px 0 #0A3078,
+0 9px 0 rgba(10,48,120,0.4),
+0 12px 20px rgba(30,80,200,0.25);
+letter-spacing: -2px;
+margin-top: 0px;
 }
 
 /* ── WHITE CONTENT AREA ── */
 .content {
-  background: #ffffff;
-  padding: 22px 22px 28px;
+background: #ffffff;
+padding: 22px 22px 28px;
 }
 
 /* VALUE PROPS */
 .props { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
 .prop {
-  display: flex; align-items: center; gap: 14px;
-  background: #edf1fa; border-radius: 18px; padding: 16px 18px;
-  box-shadow: 0 6px 0 #b8c4d8, 0 10px 20px rgba(100,130,180,0.15);
+display: flex; align-items: center; gap: 14px;
+background: #edf1fa; border-radius: 18px; padding: 16px 18px;
+box-shadow: 0 6px 0 #b8c4d8, 0 10px 20px rgba(100,130,180,0.15);
 }
 .prop-e { font-size: 28px; flex-shrink: 0; }
 .prop-t { font-size: 17px; font-weight: 700; color: #1a1a2e; line-height: 1.45; }
@@ -199,16 +201,16 @@ body {
 
 /* SOCIAL PROOF */
 .soc {
-  display: flex; align-items: center; gap: 12px;
-  background: #edf1fa; border-radius: 18px; padding: 14px 18px;
-  box-shadow: 0 6px 0 #b8c4d8, 0 10px 20px rgba(100,130,180,0.15); margin-bottom: 24px;
+display: flex; align-items: center; gap: 12px;
+background: #edf1fa; border-radius: 18px; padding: 14px 18px;
+box-shadow: 0 6px 0 #b8c4d8, 0 10px 20px rgba(100,130,180,0.15); margin-bottom: 24px;
 }
 .soc-faces { display: flex; }
 .soc-f {
-  width: 36px; height: 36px; border-radius: 50%;
-  border: 2px solid #fff; margin-left: -10px;
-  font-size: 20px; display: flex; align-items: center; justify-content: center;
-  background: #EBF4FF;
+width: 36px; height: 36px; border-radius: 50%;
+border: 2px solid #fff; margin-left: -10px;
+font-size: 20px; display: flex; align-items: center; justify-content: center;
+background: #EBF4FF;
 }
 .soc-f:first-child { margin-left: 0; }
 .soc-t { font-size: 16px; font-weight: 700; color: #666; line-height: 1.4; }
@@ -216,18 +218,18 @@ body {
 
 /* LESSONS PREVIEW */
 .prev { margin-bottom: 24px; }
-.prev-h { font-family: 'Fredoka One', cursive; font-size: 22px; color: #1a1a2e; text-align: center; margin-bottom: 14px; }
+.prev-h { font-family: ‘Fredoka One’, cursive; font-size: 22px; color: #1a1a2e; text-align: center; margin-bottom: 14px; }
 .lcard {
-  display: flex; align-items: center; gap: 12px;
-  background: #edf1fa; border-radius: 16px; padding: 14px 16px;
-  margin-bottom: 10px; border: 2px solid #E8D5A0;
-  box-shadow: 0 6px 0 #b8c4d8, 0 10px 20px rgba(100,130,180,0.15);
+display: flex; align-items: center; gap: 12px;
+background: #edf1fa; border-radius: 16px; padding: 14px 16px;
+margin-bottom: 10px; border: 2px solid #E8D5A0;
+box-shadow: 0 6px 0 #b8c4d8, 0 10px 20px rgba(100,130,180,0.15);
 }
 .lcard-n {
-  width: 32px; height: 32px; border-radius: 10px;
-  background: #F5A623; color: #fff;
-  font-family: 'Fredoka One', cursive; font-size: 15px;
-  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+width: 32px; height: 32px; border-radius: 10px;
+background: #F5A623; color: #fff;
+font-family: ‘Fredoka One’, cursive; font-size: 15px;
+display: flex; align-items: center; justify-content: center; flex-shrink: 0;
 }
 .lcard-i { flex: 1; }
 .lcard-name { font-size: 17px; font-weight: 800; color: #1a1a2e; }
@@ -239,11 +241,11 @@ body {
 .share-lbl { font-size: 14px; font-weight: 900; color: #bbb; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 14px; }
 .share-row { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
 .sbtn {
-  display: flex; align-items: center; gap: 7px;
-  padding: 11px 18px; border-radius: 50px; border: none;
-  font-family: 'Nunito', sans-serif; font-size: 15px; font-weight: 900;
-  cursor: pointer; text-decoration: none; color: #fff;
-  box-shadow: 0 4px 0 rgba(0,0,0,0.15); transition: all .18s;
+display: flex; align-items: center; gap: 7px;
+padding: 11px 18px; border-radius: 50px; border: none;
+font-family: ‘Nunito’, sans-serif; font-size: 15px; font-weight: 900;
+cursor: pointer; text-decoration: none; color: #fff;
+box-shadow: 0 4px 0 rgba(0,0,0,0.15); transition: all .18s;
 }
 .sbtn:hover { transform: translateY(-2px); }
 .sbtn:active { transform: translateY(2px); box-shadow: none; }
@@ -253,61 +255,61 @@ body {
 
 /* FORM CARD */
 .fcard {
-  background: #ffffff;
-  border: 2px solid #CED6E8;
-  border-radius: 24px; padding: 28px 22px;
-  box-shadow: 0 8px 0 #A8B8D0, 0 16px 32px rgba(100,130,180,0.18);
+background: #ffffff;
+border: 2px solid #CED6E8;
+border-radius: 24px; padding: 28px 22px;
+box-shadow: 0 8px 0 #A8B8D0, 0 16px 32px rgba(100,130,180,0.18);
 }
-.fcard-title { font-family: 'Fredoka One', cursive; font-size: 24px; color: #1a1a2e; text-align: center; margin-bottom: 4px; }
+.fcard-title { font-family: ‘Fredoka One’, cursive; font-size: 24px; color: #1a1a2e; text-align: center; margin-bottom: 4px; }
 .fcard-sub { font-size: 15px; font-weight: 700; color: #bbb; text-align: center; margin-bottom: 18px; }
 .fcard-free {
-  display: flex; align-items: center; justify-content: center; gap: 7px;
-  background: #FEF3C7; border: 2px solid #E8D5A0; border-radius: 12px;
-  padding: 11px 14px; margin-bottom: 20px;
-  font-size: 15px; font-weight: 800; color: #92400E;
+display: flex; align-items: center; justify-content: center; gap: 7px;
+background: #FEF3C7; border: 2px solid #E8D5A0; border-radius: 12px;
+padding: 11px 14px; margin-bottom: 20px;
+font-size: 15px; font-weight: 800; color: #92400E;
 }
 .fg { margin-bottom: 16px; }
 .frow { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .flbl { display: block; font-size: 15px; font-weight: 900; color: #333; margin-bottom: 7px; }
 .flbl .r { color: #F59E0B; }
 .finp {
-  display: block; width: 100%;
-  padding: 14px 16px;
-  background: #edf1fa !important;
-  border: 2px solid #CDD4E4;
-  border-radius: 13px;
-  font-size: 17px; font-family: 'Nunito', sans-serif; font-weight: 700;
-  color: #1a1a2e !important;
-  outline: none; transition: all .2s;
-  -webkit-appearance: none; appearance: none;
+display: block; width: 100%;
+padding: 14px 16px;
+background: #edf1fa !important;
+border: 2px solid #CDD4E4;
+border-radius: 13px;
+font-size: 17px; font-family: ‘Nunito’, sans-serif; font-weight: 700;
+color: #1a1a2e !important;
+outline: none; transition: all .2s;
+-webkit-appearance: none; appearance: none;
 }
 .finp:focus { border-color: #4A90E8; background: #fff !important; box-shadow: 0 0 0 4px rgba(74,144,232,.1); }
 .finp::placeholder { color: #C4CDDF; font-weight: 600; }
 .fsel {
-  display: block; width: 100%;
-  padding: 14px 40px 14px 16px;
-  background: #edf1fa !important;
-  border: 2px solid #CDD4E4; border-radius: 13px;
-  font-size: 17px; font-family: 'Nunito', sans-serif; font-weight: 700;
-  color: #1a1a2e !important;
-  outline: none; cursor: pointer;
-  -webkit-appearance: none; appearance: none;
-  transition: all .2s;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9'%3E%3Cpath d='M1 1l6 6 6-6' stroke='%234A90E8' stroke-width='2.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
-  background-repeat: no-repeat !important;
-  background-position: right 14px center !important;
+display: block; width: 100%;
+padding: 14px 40px 14px 16px;
+background: #edf1fa !important;
+border: 2px solid #CDD4E4; border-radius: 13px;
+font-size: 17px; font-family: ‘Nunito’, sans-serif; font-weight: 700;
+color: #1a1a2e !important;
+outline: none; cursor: pointer;
+-webkit-appearance: none; appearance: none;
+transition: all .2s;
+background-image: url(“data:image/svg+xml,%3Csvg xmlns=‘http://www.w3.org/2000/svg’ width=‘14’ height=‘9’%3E%3Cpath d=‘M1 1l6 6 6-6’ stroke=’%234A90E8’ stroke-width=‘2.5’ fill=‘none’ stroke-linecap=‘round’ stroke-linejoin=‘round’/%3E%3C/svg%3E”) !important;
+background-repeat: no-repeat !important;
+background-position: right 14px center !important;
 }
 .fsel:focus { border-color: #4A90E8; }
 .fhint { font-size: 13px; font-weight: 600; color: #BCC4D8; margin-top: 5px; }
 .btn-sub {
-  display: flex; align-items: center; justify-content: center; gap: 9px;
-  width: 100%; padding: 17px 22px;
-  background: linear-gradient(160deg, #FBBF24, #F5A623);
-  color: #7C2D12;
-  font-family: 'Nunito', sans-serif; font-size: 20px; font-weight: 900;
-  border: none; border-radius: 50px; cursor: pointer;
-  box-shadow: 0 6px 0 #B07800, 0 10px 22px rgba(245,166,35,.4);
-  transition: all .2s; margin-top: 6px; position: relative; top: 0;
+display: flex; align-items: center; justify-content: center; gap: 9px;
+width: 100%; padding: 17px 22px;
+background: linear-gradient(160deg, #FBBF24, #F5A623);
+color: #7C2D12;
+font-family: ‘Nunito’, sans-serif; font-size: 20px; font-weight: 900;
+border: none; border-radius: 50px; cursor: pointer;
+box-shadow: 0 6px 0 #B07800, 0 10px 22px rgba(245,166,35,.4);
+transition: all .2s; margin-top: 6px; position: relative; top: 0;
 }
 .btn-sub:hover { top: -3px; box-shadow: 0 9px 0 #B07800, 0 14px 26px rgba(245,166,35,.45); }
 .btn-sub:active { top: 5px; box-shadow: 0 1px 0 #B07800; }
@@ -320,53 +322,53 @@ body {
 @keyframes fup { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
 .ty-ico { font-size: 72px; display: block; text-align: center; margin-bottom: 12px; animation: ipop .6s ease; }
 @keyframes ipop { 0%{transform:scale(0) rotate(-15deg)} 65%{transform:scale(1.15) rotate(4deg)} 100%{transform:scale(1)} }
-.ty-title { font-family: 'Fredoka One', cursive; font-size: 32px; color: #1a1a2e; text-align: center; margin-bottom: 8px; }
+.ty-title { font-family: ‘Fredoka One’, cursive; font-size: 32px; color: #1a1a2e; text-align: center; margin-bottom: 8px; }
 .ty-title .hi { color: #4A90E8; }
 .ty-sub { font-size: 17px; font-weight: 700; color: #666; text-align: center; margin-bottom: 24px; line-height: 1.6; }
 .ty-note {
-  display: flex; align-items: flex-start; gap: 11px;
-  background: #EBF4FF; border: 2px solid rgba(74,144,232,.12);
-  border-radius: 15px; padding: 15px 17px; margin-bottom: 20px;
-  font-size: 15px; font-weight: 700; color: #1A4FAA; text-align: left;
+display: flex; align-items: flex-start; gap: 11px;
+background: #EBF4FF; border: 2px solid rgba(74,144,232,.12);
+border-radius: 15px; padding: 15px 17px; margin-bottom: 20px;
+font-size: 15px; font-weight: 700; color: #1A4FAA; text-align: left;
 }
 .ty-note .ni { font-size: 21px; flex-shrink: 0; }
 .ty-lcard {
-  background: #edf1fa; border-radius: 20px; padding: 22px 18px;
-  margin-bottom: 20px; box-shadow: 0 7px 0 #b8c4d8, 0 14px 28px rgba(100,130,180,0.18);
+background: #edf1fa; border-radius: 20px; padding: 22px 18px;
+margin-bottom: 20px; box-shadow: 0 7px 0 #b8c4d8, 0 14px 28px rgba(100,130,180,0.18);
 }
-.ty-ltitle { font-family: 'Fredoka One', cursive; font-size: 19px; color: #1a1a2e; text-align: center; margin-bottom: 16px; }
+.ty-ltitle { font-family: ‘Fredoka One’, cursive; font-size: 19px; color: #1a1a2e; text-align: center; margin-bottom: 16px; }
 .dlrow { display: flex; align-items: center; gap: 11px; padding: 12px 0; border-bottom: 2px solid #eef2fa; }
 .dlrow:last-child { border-bottom: none; padding-bottom: 0; }
 .dln {
-  width: 38px; height: 38px; border-radius: 11px;
-  background: linear-gradient(145deg, #5B9EF7, #4A90E8);
-  color: #fff; font-family: 'Fredoka One', cursive; font-size: 16px;
-  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-  box-shadow: 0 3px 0 #1A4FAA;
+width: 38px; height: 38px; border-radius: 11px;
+background: linear-gradient(145deg, #5B9EF7, #4A90E8);
+color: #fff; font-family: ‘Fredoka One’, cursive; font-size: 16px;
+display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+box-shadow: 0 3px 0 #1A4FAA;
 }
 .dli { flex: 1; }
 .dln2 { font-size: 15px; font-weight: 800; color: #1a1a2e; }
 .dlt { font-size: 12px; font-weight: 600; color: #aaa; margin-top: 1px; }
 .dlbtn {
-  display: flex; align-items: center; gap: 5px;
-  background: linear-gradient(160deg, #FBBF24, #F5A623);
-  color: #7C2D12; padding: 9px 14px; border-radius: 50px;
-  font-family: 'Nunito', sans-serif; font-size: 13px; font-weight: 900;
-  text-decoration: none; white-space: nowrap; flex-shrink: 0;
-  box-shadow: 0 3px 0 #B07800; transition: all .18s;
+display: flex; align-items: center; gap: 5px;
+background: linear-gradient(160deg, #FBBF24, #F5A623);
+color: #7C2D12; padding: 9px 14px; border-radius: 50px;
+font-family: ‘Nunito’, sans-serif; font-size: 13px; font-weight: 900;
+text-decoration: none; white-space: nowrap; flex-shrink: 0;
+box-shadow: 0 3px 0 #B07800; transition: all .18s;
 }
 .dlbtn:hover { transform: translateY(-2px); box-shadow: 0 5px 0 #B07800; }
 .ty-up {
-  background: #edf1fa; border-radius: 16px; padding: 16px 18px;
-  text-align: center; margin-bottom: 20px; box-shadow: 0 6px 0 #b8c4d8, 0 10px 20px rgba(100,130,180,0.14);
+background: #edf1fa; border-radius: 16px; padding: 16px 18px;
+text-align: center; margin-bottom: 20px; box-shadow: 0 6px 0 #b8c4d8, 0 10px 20px rgba(100,130,180,0.14);
 }
 .ty-up p { font-size: 16px; font-weight: 700; color: #555; margin-bottom: 10px; line-height: 1.5; }
 .ty-up a {
-  display: inline-block;
-  background: linear-gradient(145deg, #5B9EF7, #4A90E8);
-  color: #fff; font-family: 'Nunito', sans-serif; font-size: 15px; font-weight: 900;
-  padding: 11px 22px; border-radius: 50px; text-decoration: none;
-  box-shadow: 0 4px 0 #1A4FAA;
+display: inline-block;
+background: linear-gradient(145deg, #5B9EF7, #4A90E8);
+color: #fff; font-family: ‘Nunito’, sans-serif; font-size: 15px; font-weight: 900;
+padding: 11px 22px; border-radius: 50px; text-decoration: none;
+box-shadow: 0 4px 0 #1A4FAA;
 }
 .ty-slbl { font-size: 14px; font-weight: 900; color: #bbb; text-transform: uppercase; letter-spacing: 1px; text-align: center; margin-bottom: 13px; }
 
@@ -374,107 +376,115 @@ body {
 @keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-8px)} 60%{transform:translateX(8px)} }
 
 @media (max-width: 380px) {
-  .ht-1,.ht-2,.ht-4 { font-size: 46px !important; }
-  .ht-3 { font-size: 46px !important; }
-  .frow { grid-template-columns: 1fr; }
+.ht-1,.ht-2,.ht-4 { font-size: 46px !important; }
+.ht-3 { font-size: 46px !important; }
+.frow { grid-template-columns: 1fr; }
 }
 </style>
+
 </head>
 <body>
 
 <div class="card-wrap">
 
   <!-- LOGO -->
+
   <div class="logo-bar">
     <div class="logo-icon">🚀</div>
     <div class="logo-name"><span class="ln-e">English</span><span class="ln-q"> Quest</span></div>
   </div>
 
   <!-- ════ FORM SCREEN ════ -->
+
   <div id="form-screen">
 
-    <!-- AGE BADGE -->
-    <div class="age-badge">
-      <div class="age-dot"></div>
-      <span class="age-text">Для дітей 6–9 років</span>
+```
+<!-- AGE BADGE -->
+<div class="age-badge">
+  <div class="age-dot"></div>
+  <span class="age-text">Для дітей 6–9 років</span>
+</div>
+
+<!-- HERO TITLE with gradient bg -->
+<div class="hero-section">
+  <span class="ht ht-1">Англійська,</span>
+  <span class="ht ht-2">яку</span>
+  <div class="ht-yellow-pill">
+    <span class="ht ht-3">полюблять</span>
+  </div>
+  <span class="ht ht-4">твої діти</span>
+</div>
+
+<!-- WHITE CONTENT -->
+<div class="content">
+
+  <div class="props">
+    <div class="prop">
+      <span class="prop-e">🎮</span>
+      <div class="prop-t">Навчання через гру — <strong>дитина не помічає що вчиться</strong></div>
     </div>
-
-    <!-- HERO TITLE with gradient bg -->
-    <div class="hero-section">
-      <span class="ht ht-1">Англійська,</span>
-      <span class="ht ht-2">яку</span>
-      <div class="ht-yellow-pill">
-        <span class="ht ht-3">полюблять</span>
-      </div>
-      <span class="ht ht-4">твої діти</span>
+    <div class="prop">
+      <span class="prop-e">📬</span>
+      <div class="prop-t">Уроки надходять прямо на пошту — <strong>без зайвих додатків</strong></div>
     </div>
+    <div class="prop">
+      <span class="prop-e">⭐</span>
+      <div class="prop-t">Від нуля до рівня A1 — <strong>24 уроки за власним темпом</strong></div>
+    </div>
+  </div>
 
-    <!-- WHITE CONTENT -->
-    <div class="content">
+  <div class="soc">
+    <div class="soc-faces">
+      <div class="soc-f">👩</div><div class="soc-f">👨</div>
+      <div class="soc-f">👩</div><div class="soc-f">👨</div>
+    </div>
+    <div class="soc-t">Вже <strong>47 батьків</strong> отримали безкоштовні уроки цього місяця</div>
+  </div>
 
-      <div class="props">
-        <div class="prop">
-          <span class="prop-e">🎮</span>
-          <div class="prop-t">Навчання через гру — <strong>дитина не помічає що вчиться</strong></div>
-        </div>
-        <div class="prop">
-          <span class="prop-e">📬</span>
-          <div class="prop-t">Уроки надходять прямо на пошту — <strong>без зайвих додатків</strong></div>
-        </div>
-        <div class="prop">
-          <span class="prop-e">⭐</span>
-          <div class="prop-t">Від нуля до рівня A1 — <strong>24 уроки за власним темпом</strong></div>
-        </div>
-      </div>
+  <div class="prev">
+    <div class="prev-h">Що входить у 3 безкоштовні уроки</div>
+    <div class="lcard">
+      <div class="lcard-n">1</div>
+      <div class="lcard-i"><div class="lcard-name">👋 Урок 1 — Привітання</div><div class="lcard-desc">Hello · My name is · How are you?</div></div>
+      <div class="lcard-tag">FREE</div>
+    </div>
+    <div class="lcard">
+      <div class="lcard-n">2</div>
+      <div class="lcard-i"><div class="lcard-name">🔢 Урок 2 — Числа та вік</div><div class="lcard-desc">One to ten · How old are you?</div></div>
+      <div class="lcard-tag">FREE</div>
+    </div>
+    <div class="lcard">
+      <div class="lcard-n">3</div>
+      <div class="lcard-i"><div class="lcard-name">🎨 Урок 3 — Кольори та форми</div><div class="lcard-desc">Red · Blue · Circle · Square</div></div>
+      <div class="lcard-tag">FREE</div>
+    </div>
+  </div>
 
-      <div class="soc">
-        <div class="soc-faces">
-          <div class="soc-f">👩</div><div class="soc-f">👨</div>
-          <div class="soc-f">👩</div><div class="soc-f">👨</div>
-        </div>
-        <div class="soc-t">Вже <strong>47 батьків</strong> отримали безкоштовні уроки цього місяця</div>
-      </div>
+  <div class="share">
+    <div class="share-lbl">📢 Поділіться з друзями</div>
+    <div class="share-row">
+      <a class="sbtn stg" href="https://t.me/share/url?url=https://english-quest-kids.netlify.app/register&text=🎁+3+безкоштовні+уроки+англійської!" target="_blank"><span>✈️</span> Telegram</a>
+      <a class="sbtn swa" href="https://wa.me/?text=🎁+3+безкоштовні+уроки+https://english-quest-kids.netlify.app/register" target="_blank"><span>💬</span> WhatsApp</a>
+      <a class="sbtn sfb" href="https://www.facebook.com/sharer/sharer.php?u=https://english-quest-kids.netlify.app/register" target="_blank"><span>👍</span> Facebook</a>
+    </div>
+  </div>
 
-      <div class="prev">
-        <div class="prev-h">Що входить у 3 безкоштовні уроки</div>
-        <div class="lcard">
-          <div class="lcard-n">1</div>
-          <div class="lcard-i"><div class="lcard-name">👋 Урок 1 — Привітання</div><div class="lcard-desc">Hello · My name is · How are you?</div></div>
-          <div class="lcard-tag">FREE</div>
-        </div>
-        <div class="lcard">
-          <div class="lcard-n">2</div>
-          <div class="lcard-i"><div class="lcard-name">🔢 Урок 2 — Числа та вік</div><div class="lcard-desc">One to ten · How old are you?</div></div>
-          <div class="lcard-tag">FREE</div>
-        </div>
-        <div class="lcard">
-          <div class="lcard-n">3</div>
-          <div class="lcard-i"><div class="lcard-name">🎨 Урок 3 — Кольори та форми</div><div class="lcard-desc">Red · Blue · Circle · Square</div></div>
-          <div class="lcard-tag">FREE</div>
-        </div>
-      </div>
+  <div class="fcard">
+    <div class="fcard-title">Отримати 3 уроки 🎁</div>
+    <div class="fcard-sub">Заповніть форму — уроки відкриються одразу</div>
+    <div class="fcard-free">🎉 Абсолютно безкоштовно &nbsp;·&nbsp; Без кредитної картки</div>
+    <!-- 
+```
 
-      <div class="share">
-        <div class="share-lbl">📢 Поділіться з друзями</div>
-        <div class="share-row">
-          <a class="sbtn stg" href="https://t.me/share/url?url=https://englishquest.com.ua/register&text=🎁+3+безкоштовні+уроки+англійської!" target="_blank"><span>✈️</span> Telegram</a>
-          <a class="sbtn swa" href="https://wa.me/?text=🎁+3+безкоштовні+уроки+https://englishquest.com.ua/register" target="_blank"><span>💬</span> WhatsApp</a>
-          <a class="sbtn sfb" href="https://www.facebook.com/sharer/sharer.php?u=https://englishquest.com.ua/register" target="_blank"><span>👍</span> Facebook</a>
-        </div>
-      </div>
+════════════════════════════════════════════════
+FORMSPREE ПІДКЛЮЧЕННЯ — 3 кроки:
 
-      <div class="fcard">
-        <div class="fcard-title">Отримати 3 уроки 🎁</div>
-        <div class="fcard-sub">Заповніть форму — уроки відкриються одразу</div>
-        <div class="fcard-free">🎉 Абсолютно безкоштовно &nbsp;·&nbsp; Без кредитної картки</div>
-        <!-- 
-  ════════════════════════════════════════════════
-  FORMSPREE ПІДКЛЮЧЕННЯ — 3 кроки:
-  1. Зареєструйтесь на https://formspree.io
-  2. New Form → скопіюйте ID (напр. xpzvknjw)
-  3. Замініть YOUR_FORM_ID нижче на свій ID
-  ════════════════════════════════════════════════
--->
+1. Зареєструйтесь на https://formspree.io
+1. New Form → скопіюйте ID (напр. xpzvknjw)
+1. Замініть YOUR_FORM_ID нижче на свій ID
+   ════════════════════════════════════════════════
+   –>
+
 <form id="reg-form"
       action="https://formspree.io/f/mreavjjy"
       method="POST"
@@ -508,10 +518,14 @@ body {
         </form>
       </div>
 
-    </div><!-- /content -->
+```
+</div><!-- /content -->
+```
+
   </div><!-- /form-screen -->
 
   <!-- ════ THANK YOU ════ -->
+
   <div class="ty" id="ty-screen">
     <div class="content">
       <span class="ty-ico">🎉</span>
@@ -545,8 +559,8 @@ body {
       </div>
       <div class="ty-slbl">🤝 Поділіться з іншими батьками</div>
       <div class="share-row" style="justify-content:center;margin-bottom:8px">
-        <a class="sbtn stg" href="https://t.me/share/url?url=https://englishquest.com.ua/register&text=🚀+Класні+безкоштовні+уроки+англійської!" target="_blank"><span>✈️</span> Telegram</a>
-        <a class="sbtn swa" href="https://wa.me/?text=🎁+Безкоштовні+уроки+https://englishquest.com.ua/register" target="_blank"><span>💬</span> WhatsApp</a>
+        <a class="sbtn stg" href="https://t.me/share/url?url=https://english-quest-kids.netlify.app/register&text=🚀+Класні+безкоштовні+уроки+англійської!" target="_blank"><span>✈️</span> Telegram</a>
+        <a class="sbtn swa" href="https://wa.me/?text=🎁+Безкоштовні+уроки+https://english-quest-kids.netlify.app/register" target="_blank"><span>💬</span> WhatsApp</a>
       </div>
     </div>
   </div>
@@ -640,5 +654,6 @@ window.viewLeads=()=>{
   console.table(l);return l;
 };
 </script>
+
 </body>
 </html>
