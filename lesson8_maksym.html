@@ -316,6 +316,32 @@
     .words-grid { grid-template-columns: repeat(2, 1fr); }
   }
 </style>
+
+<script>
+(function(){
+  var params = new URLSearchParams(window.location.search);
+  var customName = params.get('name');
+  if(customName && customName.trim()){
+    // Wait for DOM then replace name
+    function replaceName(){
+      var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+      var node;
+      while(node = walker.nextNode()){
+        if(node.nodeValue.includes('Максим') || node.nodeValue.includes('максим')){
+          node.nodeValue = node.nodeValue.replace(/Максим/g, customName).replace(/максим/g, customName.toLowerCase());
+        }
+      }
+      // Also update document title
+      document.title = document.title.replace(/Максим/g, customName);
+    }
+    if(document.readyState === 'loading'){
+      document.addEventListener('DOMContentLoaded', replaceName);
+    } else {
+      replaceName();
+    }
+  }
+})();
+</script>
 </head>
 <body>
 <div class="container">
