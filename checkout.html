@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+
+<!-- v1.0 checkout mock -->
+
+<html lang="uk" style="background:#C8D8E4;color-scheme:light only;">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Оплата — English Quest</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { color-scheme: light only !important; background: #C8D8E4 !important; }
+body {
+  font-family: 'Nunito', Arial, sans-serif;
+  background: #C8D8E4;
+  color: #2A3A4A;
+  min-height: 100vh;
+  padding: 24px 16px 60px;
+  -webkit-text-size-adjust: 100%;
+}
+.bgc { position: fixed; border-radius: 50%; pointer-events: none; z-index: 0; }
+.bgc1 { width: 320px; height: 320px; top: -100px; right: -100px;
+  background: radial-gradient(circle at 30% 30%, #DCE8F2, #B4C8D6);
+  box-shadow: inset -8px -8px 20px rgba(140,162,180,1), inset 8px 8px 20px rgba(255,255,255,1); }
+.bgc2 { width: 240px; height: 240px; bottom: -80px; left: -80px;
+  background: radial-gradient(circle at 30% 30%, #DCE8F2, #B4C8D6);
+  box-shadow: inset -8px -8px 20px rgba(140,162,180,1), inset 8px 8px 20px rgba(255,255,255,1); }
+
+.page { max-width: 480px; margin: 0 auto; position: relative; z-index: 1; }
+
+/* Logo */
+.logo-bar {
+display: flex; align-items: center; gap: 14px;
+padding: 18px 24px; margin-bottom: 16px;
+background: linear-gradient(145deg, #DCE8F2, #B4C8D6);
+border-radius: 22px; text-decoration: none;
+box-shadow:
+-6px -6px 18px rgba(255,255,255,1),
+6px  6px 18px rgba(140,162,180,1),
+inset 1px 1px 2px rgba(255,255,255,0.6);
+transition: box-shadow .25s, transform .25s;
+}
+.logo-bar:hover { transform: translateY(-2px); }
+.logo-icon {
+width: 48px; height: 48px; border-radius: 14px;
+background: linear-gradient(145deg, #6BAEF8, #3A7FD4);
+display: flex; align-items: center; justify-content: center;
+font-size: 26px; flex-shrink: 0;
+box-shadow: -4px -4px 10px rgba(255,255,255,0.7), 4px 4px 10px rgba(42,106,200,0.5);
+}
+.logo-name { font-size: 26px; font-weight: 900; line-height: 1; }
+.logo-name span { display: inline-block; }
+.lc1{color:#FF7EB3;text-shadow:0 2px 0 #C03060,0 4px 0 #901848}
+.lc2{color:#A78BFA;text-shadow:0 2px 0 #6040C0,0 4px 0 #402090}
+.lc3{color:#5BAAE8;text-shadow:0 2px 0 #2060B0,0 4px 0 #104080}
+.lc4{color:#22A060;text-shadow:0 2px 0 #107840,0 4px 0 #065028}
+.lc5{color:#D4A020;text-shadow:0 2px 0 #A07010,0 4px 0 #704A00}
+.lc6{color:#E07828;text-shadow:0 2px 0 #A04A10,0 4px 0 #702800}
+
+/* Main card */
+.card {
+background: linear-gradient(145deg, #DCE8F2, #C8D8E4);
+border-radius: 32px; overflow: hidden;
+box-shadow:
+-12px -12px 28px rgba(255,255,255,1),
+12px  12px 28px rgba(140,162,180,1),
+-5px -5px 14px rgba(255,255,255,0.7),
+5px  5px 14px rgba(130,158,178,0.7);
+}
+
+/* Header */
+.header {
+background: linear-gradient(145deg, #6BAEF8, #3A7FD4);
+padding: 24px; text-align: center; position: relative; overflow: hidden;
+box-shadow: inset 1px 1px 3px rgba(255,255,255,0.25);
+}
+.header::before {
+content: ‘’; position: absolute; top: -40px; right: -40px;
+width: 160px; height: 160px; border-radius: 50%;
+background: rgba(255,255,255,0.1); pointer-events: none;
+}
+.header-icon { font-size: 40px; display: block; margin-bottom: 8px; }
+.header-title { font-size: 22px; font-weight: 900; color: #fff;
+text-shadow: 2px 2px 6px rgba(20,60,140,0.4); margin-bottom: 4px; }
+.header-sub { font-size: 13px; color: rgba(255,255,255,0.8); font-weight: 700; }
+
+/* Content */
+.content { padding: 22px 20px 28px; }
+
+/* Order summary */
+.order-box {
+background: linear-gradient(145deg, #DCE8F2, #B4C8D6);
+border-radius: 20px; padding: 18px 20px; margin-bottom: 18px;
+box-shadow: -7px -7px 18px rgba(255,255,255,1), 7px 7px 18px rgba(140,162,180,1);
+}
+.order-title { font-size: 13px; font-weight: 900; color: #8AA0B0;
+text-transform: uppercase; letter-spacing: 1px; margin-bottom: 14px; }
+.order-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.order-row:last-child { margin-bottom: 0; }
+.order-label { font-size: 14px; font-weight: 700; color: #5A7080; }
+.order-val { font-size: 14px; font-weight: 900; color: #2A3A4A; }
+.order-divider { height: 2px; background: linear-gradient(to right, transparent, rgba(140,162,180,0.5), transparent);
+border-radius: 1px; margin: 12px 0; }
+.order-total-label { font-size: 16px; font-weight: 900; color: #2A3A4A; }
+.order-total-val { font-size: 24px; font-weight: 900; color: #4A90E8;
+text-shadow: -1px -1px 3px rgba(255,255,255,0.7), 1px 1px 4px rgba(20,60,140,0.3); }
+
+/* User info */
+.user-box {
+background: linear-gradient(145deg, #B4C8D6, #DCE8F2);
+border-radius: 16px; padding: 14px 18px; margin-bottom: 18px;
+box-shadow: inset 3px 3px 8px rgba(140,162,180,1), inset -3px -3px 8px rgba(255,255,255,1);
+display: flex; align-items: center; gap: 12px;
+}
+.user-icon { font-size: 28px; flex-shrink: 0; }
+.user-info { flex: 1; }
+.user-name { font-size: 15px; font-weight: 900; color: #2A3A4A; }
+.user-email { font-size: 13px; font-weight: 600; color: #5A7080; }
+
+/* Card form */
+.form-box {
+background: linear-gradient(145deg, #B4C8D6, #DCE8F2);
+border-radius: 20px; padding: 20px;
+box-shadow: inset 4px 4px 12px rgba(140,162,180,1), inset -4px -4px 12px rgba(255,255,255,1);
+margin-bottom: 18px;
+}
+.form-title { font-size: 15px; font-weight: 900; color: #2A3A4A; margin-bottom: 16px;
+display: flex; align-items: center; gap: 8px; }
+.form-title .lock { font-size: 18px; }
+
+.flbl { display: block; font-size: 12px; font-weight: 900; color: #5A7080;
+text-transform: uppercase; letter-spacing: .8px; margin-bottom: 6px; }
+.fg { margin-bottom: 14px; }
+.fg:last-child { margin-bottom: 0; }
+.frow2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+.finp {
+display: block; width: 100%; padding: 13px 16px;
+background: linear-gradient(145deg, #C8D8E4, #DCE8F2);
+border: none; border-radius: 14px;
+font-size: 16px; font-family: ‘Nunito’, sans-serif; font-weight: 700;
+color: #2A3A4A; outline: none; -webkit-appearance: none;
+box-shadow: inset 3px 3px 8px rgba(140,162,180,1), inset -3px -3px 8px rgba(255,255,255,1);
+transition: box-shadow .2s;
+letter-spacing: .5px;
+}
+.finp:focus {
+box-shadow: inset 4px 4px 10px rgba(140,162,180,1), inset -4px -4px 10px rgba(255,255,255,1),
+0 0 0 2px rgba(74,144,232,0.35);
+}
+.finp::placeholder { color: #8AA0B0; font-weight: 600; letter-spacing: 0; }
+
+/* Card number with icon */
+.card-input-wrap { position: relative; }
+.card-input-wrap .finp { padding-right: 52px; }
+.card-icons { position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
+display: flex; gap: 4px; }
+.card-icons span { font-size: 18px; }
+
+/* Security note */
+.secure-note {
+display: flex; align-items: center; gap: 8px;
+background: linear-gradient(145deg, #DCE8F2, #B4C8D6);
+border-radius: 12px; padding: 10px 14px; margin-bottom: 18px;
+box-shadow: -3px -3px 8px rgba(255,255,255,1), 3px 3px 8px rgba(140,162,180,1);
+font-size: 12px; font-weight: 700; color: #5A7080;
+}
+.secure-note .si { font-size: 16px; }
+
+/* Pay button */
+.pay-btn {
+display: flex; align-items: center; justify-content: center; gap: 10px;
+width: 100%; padding: 18px;
+background: linear-gradient(145deg, #28D068, #10A040);
+color: #022A1E; font-family: ‘Nunito’, sans-serif;
+font-size: 20px; font-weight: 900;
+border: none; border-radius: 50px; cursor: pointer;
+box-shadow:
+-6px -6px 18px rgba(80,220,130,0.6),
+6px  6px 18px rgba(5,80,30,0.55),
+inset 1px 1px 3px rgba(255,255,255,0.4);
+transition: all .25s;
+}
+.pay-btn:hover {
+transform: translateY(-4px);
+box-shadow:
+-10px -10px 26px rgba(80,220,130,0.7),
+10px  10px 26px rgba(5,80,30,0.65),
+inset 1px 1px 3px rgba(255,255,255,0.4);
+}
+.pay-btn:active {
+transform: translateY(2px);
+box-shadow: inset 5px 5px 12px rgba(5,80,30,0.5), inset -5px -5px 12px rgba(80,220,130,0.4);
+}
+.pay-btn:disabled { opacity: .7; cursor: not-allowed; transform: none; }
+
+/* Loading overlay */
+.loading-overlay {
+display: none; position: fixed; inset: 0; z-index: 100;
+background: rgba(200,216,228,0.92); backdrop-filter: blur(6px);
+align-items: center; justify-content: center; flex-direction: column; gap: 20px;
+}
+.loading-overlay.show { display: flex; }
+.spinner {
+width: 64px; height: 64px; border-radius: 50%;
+background: linear-gradient(145deg, #DCE8F2, #B4C8D6);
+box-shadow: -6px -6px 16px rgba(255,255,255,1), 6px 6px 16px rgba(140,162,180,1);
+display: flex; align-items: center; justify-content: center;
+animation: spin 1s linear infinite;
+}
+.spinner::after {
+content: ‘’; width: 44px; height: 44px; border-radius: 50%;
+border: 4px solid transparent;
+border-top-color: #4A90E8;
+border-right-color: #4A90E8;
+animation: spin .8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.loading-text { font-size: 18px; font-weight: 900; color: #2A3A4A;
+animation: pulse 1.2s ease-in-out infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+
+/* Success overlay */
+.success-overlay {
+display: none; position: fixed; inset: 0; z-index: 200;
+background: #C8D8E4; align-items: center; justify-content: center;
+flex-direction: column; padding: 24px;
+}
+.success-overlay.show { display: flex; animation: fadeIn .5s ease; }
+@keyframes fadeIn { from{opacity:0} to{opacity:1} }
+.success-icon { font-size: 80px; animation: pop .6s ease;
+margin-bottom: 16px; }
+@keyframes pop { 0%{transform:scale(0) rotate(-15deg)} 65%{transform:scale(1.15)} 100%{transform:scale(1)} }
+.success-title { font-size: 32px; font-weight: 900; color: #2A3A4A;
+text-align: center; margin-bottom: 8px; }
+.success-title .hi { color: #22A060; }
+.success-sub { font-size: 15px; font-weight: 700; color: #5A7080;
+text-align: center; margin-bottom: 30px; line-height: 1.6; max-width: 360px; }
+
+.success-card {
+width: 100%; max-width: 400px;
+background: linear-gradient(145deg, #DCE8F2, #B4C8D6);
+border-radius: 24px; padding: 22px 20px; margin-bottom: 20px;
+box-shadow: -8px -8px 22px rgba(255,255,255,1), 8px 8px 22px rgba(140,162,180,1);
+}
+.success-card-title { font-size: 16px; font-weight: 900; color: #2A3A4A;
+text-align: center; margin-bottom: 14px; }
+.email-note {
+background: linear-gradient(145deg, #B4C8D6, #DCE8F2);
+border-radius: 14px; padding: 14px 16px;
+box-shadow: inset 3px 3px 8px rgba(140,162,180,1), inset -3px -3px 8px rgba(255,255,255,1);
+font-size: 14px; font-weight: 700; color: #2A3A4A; text-align: center; line-height: 1.6;
+}
+.email-note strong { color: #4A90E8; }
+
+.goto-btn {
+display: flex; align-items: center; justify-content: center; gap: 8px;
+width: 100%; max-width: 400px; padding: 16px;
+background: linear-gradient(145deg, #FFC840, #D89000);
+color: #5A2A00; font-family: ‘Nunito’, sans-serif;
+font-size: 17px; font-weight: 900;
+border: none; border-radius: 50px; cursor: pointer; text-decoration: none;
+box-shadow:
+-6px -6px 18px rgba(255,220,80,0.65),
+6px  6px 18px rgba(130,70,0,0.55),
+inset 1px 1px 3px rgba(255,255,255,0.45);
+transition: all .25s;
+}
+.goto-btn:hover { transform: translateY(-3px);
+box-shadow: -10px -10px 26px rgba(255,220,80,0.75), 10px 10px 26px rgba(130,70,0,0.65); }
+
+/* Back link */
+.back-link { text-align: center; margin-top: 16px; }
+.back-link a { font-size: 13px; font-weight: 700; color: #8AA0B0; text-decoration: none; }
+.back-link a:hover { color: #4A90E8; }
+
+/* Confetti canvas */
+#confetti-canvas { position: fixed; inset: 0; pointer-events: none; z-index: 250; }
+</style>
+
+</head>
+<body>
+<div class="bgc bgc1"></div>
+<div class="bgc bgc2"></div>
+<canvas id="confetti-canvas"></canvas>
+
+<!-- Loading overlay -->
+
+<div class="loading-overlay" id="loading">
+  <div class="spinner"></div>
+  <div class="loading-text" id="loading-text">Обробляємо платіж...</div>
+</div>
+
+<!-- Success overlay -->
+
+<div class="success-overlay" id="success">
+  <span class="success-icon">🎉</span>
+  <div class="success-title">Оплата <span class="hi">успішна!</span></div>
+  <div class="success-sub" id="success-sub">Дякуємо! Перевірте вашу пошту — там вже чекають усі 24 уроки.</div>
+  <div class="success-card" style="width:100%;max-width:400px;">
+    <div class="success-card-title">📧 Листа надіслано на:</div>
+    <div class="email-note"><strong id="success-email">...</strong><br>Перевірте папку «Спам» якщо не бачите листа</div>
+  </div>
+  <a href="index.html" class="goto-btn">🏠 На головну</a>
+</div>
+
+<div class="page" id="main-page">
+
+  <!-- Logo -->
+
+  <a href="index.html" class="logo-bar">
+    <div class="logo-icon">🚀</div>
+    <div class="logo-name">
+      <span class="lc1">E</span><span class="lc2">n</span><span class="lc3">g</span><span class="lc4">l</span><span class="lc5">i</span><span class="lc6">s</span><span class="lc1">h</span>&nbsp;<span class="lc2">Q</span><span class="lc3">u</span><span class="lc4">e</span><span class="lc5">s</span><span class="lc6">t</span>
+    </div>
+  </a>
+
+  <div class="card">
+    <!-- Header -->
+    <div class="header">
+      <span class="header-icon">💳</span>
+      <div class="header-title">Оплата замовлення</div>
+      <div class="header-sub">Безпечна транзакція · SSL захист</div>
+    </div>
+
+```
+<div class="content">
+
+  <!-- Order summary -->
+  <div class="order-box">
+    <div class="order-title">📦 Ваше замовлення</div>
+    <div class="order-row">
+      <div class="order-label">🚀 English Quest — Повний курс</div>
+    </div>
+    <div class="order-row">
+      <div class="order-label">📚 Уроків</div>
+      <div class="order-val">24 уроки</div>
+    </div>
+    <div class="order-row">
+      <div class="order-label">📧 Доставка</div>
+      <div class="order-val">На email</div>
+    </div>
+    <div class="order-divider"></div>
+    <div class="order-row">
+      <div class="order-total-label">💰 До оплати</div>
+      <div class="order-total-val">$12</div>
+    </div>
+  </div>
+
+  <!-- User info -->
+  <div class="user-box">
+    <div class="user-icon">👤</div>
+    <div class="user-info">
+      <div class="user-name" id="disp-name">Завантаження...</div>
+      <div class="user-email" id="disp-email">...</div>
+    </div>
+  </div>
+
+  <!-- Card form -->
+  <div class="form-box">
+    <div class="form-title">
+      <span class="lock">🔒</span> Дані картки
+    </div>
+
+    <div class="fg">
+      <label class="flbl">Номер картки</label>
+      <div class="card-input-wrap">
+        <input class="finp" id="card-num" type="tel" inputmode="numeric"
+          placeholder="0000 0000 0000 0000" maxlength="19" autocomplete="cc-number">
+        <div class="card-icons">
+          <span>💳</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="frow2">
+      <div class="fg">
+        <label class="flbl">Термін дії</label>
+        <input class="finp" id="card-exp" type="tel" inputmode="numeric"
+          placeholder="MM/RR" maxlength="5" autocomplete="cc-exp">
+      </div>
+      <div class="fg">
+        <label class="flbl">CVV</label>
+        <input class="finp" id="card-cvv" type="tel" inputmode="numeric"
+          placeholder="•••" maxlength="3" autocomplete="cc-csc">
+      </div>
+    </div>
+
+    <div class="fg">
+      <label class="flbl">Ім'я на картці</label>
+      <input class="finp" id="card-name" type="text"
+        placeholder="IVAN PETRENKO" autocomplete="cc-name" style="text-transform:uppercase;">
+    </div>
+  </div>
+
+  <!-- Security note -->
+  <div class="secure-note">
+    <span class="si">🛡️</span>
+    Дані картки не зберігаються на нашому сервері. Захищено SSL шифруванням.
+  </div>
+
+  <!-- Pay button -->
+  <button class="pay-btn" id="pay-btn" onclick="handlePay()">
+    🔒 Оплатити $12
+  </button>
+
+  <div class="back-link">
+    <a href="index.html">← Повернутися назад</a>
+  </div>
+
+</div>
+```
+
+  </div>
+</div>
+
+<script>
+// Read URL params
+var params = new URLSearchParams(window.location.search);
+var pn = params.get('pn') || '';
+var cn = params.get('cn') || '';
+var em = params.get('em') || '';
+
+// Display user info
+document.getElementById('disp-name').textContent = pn + (cn ? ' · Дитина: ' + cn : '');
+document.getElementById('disp-email').textContent = em;
+
+// Format card number with spaces
+document.getElementById('card-num').addEventListener('input', function(e) {
+  var v = e.target.value.replace(/\D/g, '').substring(0, 16);
+  e.target.value = v.replace(/(.{4})/g, '$1 ').trim();
+});
+
+// Format expiry
+document.getElementById('card-exp').addEventListener('input', function(e) {
+  var v = e.target.value.replace(/\D/g, '').substring(0, 4);
+  if (v.length >= 2) v = v.substring(0,2) + '/' + v.substring(2);
+  e.target.value = v;
+});
+
+// Only digits for CVV
+document.getElementById('card-cvv').addEventListener('input', function(e) {
+  e.target.value = e.target.value.replace(/\D/g, '').substring(0, 3);
+});
+
+// Uppercase card name
+document.getElementById('card-name').addEventListener('input', function(e) {
+  e.target.value = e.target.value.toUpperCase();
+});
+
+// Shake animation
+function shake(id) {
+  var el = document.getElementById(id);
+  el.style.animation = 'none';
+  el.offsetHeight;
+  el.style.animation = 'shake .4s ease';
+  el.style.boxShadow = 'inset 4px 4px 10px rgba(140,162,180,1), inset -4px -4px 10px rgba(255,255,255,1), 0 0 0 2px rgba(220,60,60,0.5)';
+  setTimeout(function(){ el.style.boxShadow = ''; }, 1500);
+}
+
+// Handle payment
+function handlePay() {
+  var num = document.getElementById('card-num').value.replace(/\s/g, '');
+  var exp = document.getElementById('card-exp').value;
+  var cvv = document.getElementById('card-cvv').value;
+  var name = document.getElementById('card-name').value.trim();
+
+  if (num.length < 16) { shake('card-num'); return; }
+  if (exp.length < 5)  { shake('card-exp'); return; }
+  if (cvv.length < 3)  { shake('card-cvv'); return; }
+  if (!name)           { shake('card-name'); return; }
+
+  // Disable button
+  document.getElementById('pay-btn').disabled = true;
+
+  // Show loading
+  var overlay = document.getElementById('loading');
+  var loadText = document.getElementById('loading-text');
+  overlay.classList.add('show');
+
+  // Simulate payment stages
+  var stages = [
+    [800,  'Перевіряємо картку...'],
+    [1800, 'Обробляємо платіж...'],
+    [2800, 'Підтверджуємо транзакцію...'],
+    [3600, 'Готуємо уроки...'],
+  ];
+  stages.forEach(function(s) {
+    setTimeout(function(){ loadText.textContent = s[1]; }, s[0]);
+  });
+
+  // After 4.5s — send email then show success
+  setTimeout(function() {
+    // Send 24 lessons via Netlify Function
+    fetch('/.netlify/functions/send-email', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ parent_name: pn, child_name: cn, email: em, plan: 'full' })
+    }).catch(function(){});
+
+    // Also Formspree
+    try {
+      var fd = new URLSearchParams({ parent_name: pn, child_name: cn, email: em, plan: 'full',
+        _subject: 'ОПЛАТА — English Quest повний курс $12' });
+      fetch('https://formspree.io/f/mreavjjy', { method: 'POST', body: fd,
+        headers: { 'Accept': 'application/json' } });
+    } catch(e) {}
+
+    overlay.classList.remove('show');
+    showSuccess();
+  }, 4500);
+}
+
+function showSuccess() {
+  document.getElementById('success-email').textContent = em;
+  document.getElementById('success').classList.add('show');
+  boom();
+}
+
+// Confetti
+function boom() {
+  var canvas = document.getElementById('confetti-canvas');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  var ctx = canvas.getContext('2d');
+  var pieces = [];
+  var colors = ['#FF7EB3','#A78BFA','#5BAAE8','#22A060','#D4A020','#E07828','#FFD84D','#4ADE80'];
+  for (var i = 0; i < 120; i++) {
+    pieces.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height - canvas.height,
+      r: Math.random() * 8 + 4,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      speed: Math.random() * 4 + 2,
+      angle: Math.random() * Math.PI * 2,
+      spin: (Math.random() - 0.5) * 0.2,
+      shape: Math.random() > 0.5 ? 'circle' : 'rect'
+    });
+  }
+  var frame;
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    var alive = false;
+    pieces.forEach(function(p) {
+      p.y += p.speed;
+      p.angle += p.spin;
+      if (p.y < canvas.height + 20) alive = true;
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.angle);
+      ctx.fillStyle = p.color;
+      ctx.globalAlpha = 0.9;
+      if (p.shape === 'circle') {
+        ctx.beginPath(); ctx.arc(0, 0, p.r, 0, Math.PI*2); ctx.fill();
+      } else {
+        ctx.fillRect(-p.r, -p.r/2, p.r*2, p.r);
+      }
+      ctx.restore();
+    });
+    if (alive) frame = requestAnimationFrame(draw);
+    else ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+  draw();
+  setTimeout(function(){ cancelAnimationFrame(frame); ctx.clearRect(0,0,canvas.width,canvas.height); }, 4000);
+}
+
+// Shake keyframes
+var style = document.createElement('style');
+style.textContent = '@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-7px)}60%{transform:translateX(7px)}}';
+document.head.appendChild(style);
+</script>
+
+</body>
+</html>
