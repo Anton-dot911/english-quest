@@ -6,8 +6,162 @@
 <title>Урок 5 — Тіло людини</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
+
+  /* ══ NEOMORPHISM — identical to index.html ══ */
+  html { color-scheme: light only; }
+  body {
+    background: #C8D8E4 !important;
+    font-family: 'Nunito', sans-serif;
+    color: #2A3A4A;
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+  }
+  body::before {
+    content: '';
+    position: fixed; top: -80px; right: -100px;
+    width: 320px; height: 320px; border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #DCE8F2, #B4C8D6);
+    box-shadow: inset -8px -8px 20px rgba(140,162,180,1), inset 8px 8px 20px rgba(255,255,255,1);
+    pointer-events: none; z-index: 0;
+  }
+  body::after {
+    content: '';
+    position: fixed; bottom: -60px; left: -80px;
+    width: 240px; height: 240px; border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #DCE8F2, #B4C8D6);
+    box-shadow: inset -8px -8px 20px rgba(140,162,180,1), inset 8px 8px 20px rgba(255,255,255,1);
+    pointer-events: none; z-index: 0;
+  }
+
+  /* Cards */
+  .progress-wrap,
+  .section {
+    background: linear-gradient(145deg, #DCE8F2, #B4C8D6) !important;
+    border-radius: 20px;
+    box-shadow:
+      -9px -9px 22px rgba(255,255,255,1),
+       9px  9px 22px rgba(140,162,180,1) !important;
+    border: none !important;
+  }
+
+  /* Section icon */
+  .section-icon {
+    background: linear-gradient(145deg, #DCE8F2, #B4C8D6) !important;
+    box-shadow: -4px -4px 10px rgba(255,255,255,1), 4px 4px 10px rgba(140,162,180,1) !important;
+    border: none !important;
+  }
+
+  /* Intro bubble — inset (pressed) */
+  .intro-bubble {
+    background: linear-gradient(145deg, #B4C8D6, #DCE8F2) !important;
+    border: none !important;
+    box-shadow:
+      inset 4px 4px 10px rgba(140,162,180,1),
+      inset -4px -4px 10px rgba(255,255,255,1) !important;
+  }
+
+  /* Grammar box — inset */
+  .grammar-box {
+    background: linear-gradient(145deg, #B4C8D6, #DCE8F2) !important;
+    border-top: none !important;
+    border-right: none !important;
+    border-bottom: none !important;
+    box-shadow:
+      inset 4px 4px 10px rgba(140,162,180,1),
+      inset -4px -4px 10px rgba(255,255,255,1) !important;
+  }
+
+  /* Word cards */
+  .word-card, .vocab-card, .match-card, .option-btn, .answer-option {
+    background: linear-gradient(145deg, #DCE8F2, #B4C8D6) !important;
+    box-shadow: -6px -6px 16px rgba(255,255,255,1), 6px 6px 16px rgba(140,162,180,1) !important;
+    border: none !important;
+    transition: box-shadow .2s, transform .2s !important;
+  }
+  .word-card:hover, .vocab-card:hover, .option-btn:hover, .answer-option:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: -9px -9px 22px rgba(255,255,255,1), 9px 9px 22px rgba(140,162,180,1) !important;
+  }
+  .word-card:active, .vocab-card:active, .option-btn:active, .answer-option:active,
+  .word-card.selected, .option-btn.selected, .answer-option.selected {
+    box-shadow:
+      inset 4px 4px 10px rgba(140,162,180,1),
+      inset -4px -4px 10px rgba(255,255,255,1),
+      0 0 0 3px rgba(74,144,232,0.5),
+      0 0 18px rgba(74,144,232,0.25) !important;
+    transform: translateY(0) !important;
+    background: linear-gradient(145deg, #D0E4F8, #B8CDE0) !important;
+  }
+  /* flipped cards blue glow */
+  .word-card.flipped {
+    background: linear-gradient(145deg, #D0E4F8, #B8CDE0) !important;
+    box-shadow:
+      inset 3px 3px 8px rgba(100,140,180,0.7),
+      inset -3px -3px 8px rgba(200,230,255,0.8),
+      0 0 0 3px rgba(74,144,232,0.45),
+      0 0 16px rgba(74,144,232,0.2) !important;
+    border-color: rgba(74,144,232,0.4) !important;
+  }
+
+  /* Progress bar track */
+  .progress-bar {
+    background: linear-gradient(145deg, #B4C8D6, #DCE8F2) !important;
+    box-shadow: inset 2px 2px 6px rgba(140,162,180,1), inset -2px -2px 6px rgba(255,255,255,1) !important;
+  }
+
+  /* Blue buttons (Next, Check etc) */
+  .btn, .next-btn, .check-btn, .btn-primary, button.btn-blue {
+    background: linear-gradient(145deg, #6BAEF8, #3A7FD4) !important;
+    border: none !important;
+    box-shadow:
+      -5px -5px 14px rgba(120,180,255,0.6),
+       5px  5px 14px rgba(20,60,140,0.55),
+      inset 1px 1px 3px rgba(255,255,255,0.35) !important;
+    transition: all .25s !important;
+  }
+  .btn:hover, .next-btn:hover, .check-btn:hover, .btn-primary:hover {
+    transform: translateY(-3px) !important;
+    box-shadow:
+      -8px -8px 22px rgba(120,180,255,0.7),
+       8px  8px 22px rgba(20,60,140,0.65),
+      inset 1px 1px 3px rgba(255,255,255,0.35) !important;
+  }
+  .btn:active, .next-btn:active, .check-btn:active {
+    transform: translateY(2px) !important;
+    box-shadow:
+      inset 5px 5px 12px rgba(20,60,140,0.5),
+      inset -5px -5px 12px rgba(120,180,255,0.4) !important;
+  }
+
+  /* Yellow buttons */
+  .btn-yellow, .hint-btn {
+    background: linear-gradient(145deg, #FFC840, #D89000) !important;
+    border: none !important;
+    box-shadow:
+      -5px -5px 14px rgba(255,220,80,0.65),
+       5px  5px 14px rgba(130,70,0,0.55),
+      inset 1px 1px 3px rgba(255,255,255,0.4) !important;
+  }
+
+  /* Lesson header — raised panel */
+  .lesson-header {
+    background: linear-gradient(145deg, #6BAEF8, #3A7FD4) !important;
+    box-shadow:
+      -8px -8px 22px rgba(120,180,255,0.4),
+       8px  8px 22px rgba(20,60,140,0.5),
+      inset 1px 1px 3px rgba(255,255,255,0.25) !important;
+  }
+
+  /* Result / feedback boxes */
+  .result-box, .feedback-box {
+    background: linear-gradient(145deg, #DCE8F2, #B4C8D6) !important;
+    box-shadow: -7px -7px 18px rgba(255,255,255,1), 7px 7px 18px rgba(140,162,180,1) !important;
+    border: none !important;
+  }
+
   :root {
-    --bg: #e8eaf0;
+    --bg: #C8D8E4;
     --blue: #4A90E8;
     --blue-dark: #2A6AC8;
     --blue-shadow: #1A4FAA;
@@ -19,18 +173,18 @@
     --text3: #9999bb;
     --correct: #22c55e;
     --wrong: #ef4444;
-    --card: #ffffff;
+    --card: #C8D8E4;
     --radius: 20px;
     --radius-lg: 24px;
-    --shadow-card: 0 8px 28px rgba(74,144,232,0.12), 0 2px 8px rgba(0,0,0,0.06);
-    --shadow-btn-blue: 0 5px 0 var(--blue-shadow), 0 8px 20px rgba(74,144,232,0.35);
-    --shadow-btn-yellow: 0 5px 0 var(--yellow-dark), 0 8px 20px rgba(245,166,35,0.4);
+    --shadow-card: -7px -7px 18px rgba(255,255,255,1), 7px 7px 18px rgba(140,162,180,1);
+    --shadow-btn-blue: -5px -5px 14px rgba(120,180,255,0.5), 5px 5px 14px rgba(20,60,140,0.5);
+    --shadow-btn-yellow: -5px -5px 14px rgba(255,220,80,0.6), 5px 5px 14px rgba(130,70,0,0.5);
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { color-scheme: light only; }
   body {
     font-family: 'Nunito', sans-serif;
-    background: var(--bg);
+    background: #C8D8E4;
     color: var(--text);
     min-height: 100vh;
     overflow-x: hidden;
@@ -41,14 +195,14 @@
     content: '';
     position: fixed; top: -60px; right: -80px;
     width: 340px; height: 340px; border-radius: 50%;
-    background: rgba(255,255,255,0.55);
+    background: rgba(255,255,255,0.3);
     pointer-events: none; z-index: 0;
   }
   body::after {
     content: '';
     position: fixed; bottom: -60px; left: -60px;
     width: 260px; height: 260px; border-radius: 50%;
-    background: rgba(255,255,255,0.4);
+    background: rgba(255,255,255,0.2);
     pointer-events: none; z-index: 0;
   }
   .container { max-width: 680px; margin: 0 auto; padding: 20px 16px 60px; position: relative; z-index: 1; }
@@ -102,9 +256,9 @@
 
   /* ── SECTIONS ── */
   .section {
-    background: white; border-radius: var(--radius);
+    background: linear-gradient(145deg, #DCE8F2, #B4C8D6); border-radius: var(--radius);
     padding: 22px; margin-bottom: 18px;
-    box-shadow: var(--shadow-card);
+    box-shadow: -7px -7px 18px rgba(255,255,255,1), 7px 7px 18px rgba(140,162,180,1);
     display: none; position: relative;
   }
   .section.active { display: block; animation: fadeIn 0.3s ease; }
@@ -114,25 +268,27 @@
     width: 48px; height: 48px; border-radius: 14px;
     display: flex; align-items: center; justify-content: center;
     font-size: 24px; flex-shrink: 0;
-    background: linear-gradient(135deg, #EBF4FF, #D6EAFF);
-    box-shadow: 0 3px 10px rgba(74,144,232,0.15);
+    background: linear-gradient(145deg, #DCE8F2, #B4C8D6);
+    box-shadow: -3px -3px 8px rgba(255,255,255,1), 3px 3px 8px rgba(140,162,180,1);
   }
   .section-title { font-size: 21px; font-weight: 900; color: var(--text); }
   .section-desc { font-size: 15px; color: var(--text2); font-weight: 700; margin-top: 2px; }
 
   /* ── INTRO / GRAMMAR ── */
   .intro-bubble {
-    background: linear-gradient(135deg, #EBF4FF, #F0EAFF);
-    border: 1.5px solid rgba(74,144,232,0.2);
+    background: linear-gradient(145deg, #DCE8F2, #C4D4E0);
+    border: none;
     border-radius: 16px; padding: 18px;
+    box-shadow: inset 3px 3px 8px rgba(140,162,180,1), inset -3px -3px 8px rgba(255,255,255,1);
     font-size: 17px; font-weight: 600; line-height: 1.8; color: var(--text);
   }
   .intro-bubble em { color: var(--blue); font-style: normal; font-weight: 900; }
   .grammar-box {
-    background: linear-gradient(135deg, #F5EEFF, #EDE4FF);
-    border: 1.5px solid rgba(187,107,217,0.25);
-    border-left: 4px solid var(--purple);
+    background: linear-gradient(145deg, #DCE8F2, #C4D4E0);
+    border: none;
+    border-left: 4px solid #BB6BD9;
     border-radius: 14px; padding: 16px 18px; margin-top: 16px;
+    box-shadow: inset 3px 3px 8px rgba(140,162,180,0.8), inset -3px -3px 8px rgba(255,255,255,0.9);
     font-size: 16px; font-weight: 600;
   }
   .grammar-box h4 { font-size: 14px; color: #7B2FA0; margin-bottom: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; }
@@ -267,7 +423,7 @@
     color: #7C2D12; border: none; border-radius: 18px; padding: 17px;
     font-size: 20px; font-family: 'Nunito', sans-serif; font-weight: 900;
     cursor: pointer; margin-top: 18px;
-    box-shadow: var(--shadow-btn-yellow);
+    box-shadow: -5px -5px 14px rgba(255,220,80,0.6), 5px 5px 14px rgba(130,70,0,0.5), inset 1px 1px 2px rgba(255,255,255,0.3);
     transition: all 0.2s; position: relative; top: 0;
   }
   .btn-next:hover { top: -3px; box-shadow: 0 8px 0 var(--yellow-dark), 0 14px 28px rgba(245,166,35,0.45); }
