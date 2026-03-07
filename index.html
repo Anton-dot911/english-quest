@@ -782,10 +782,10 @@ async function handleSubmit(e) {
   document.getElementById('ty-email').textContent = em;
 
   if (currentPlan === 'full') {
-    document.getElementById('ty-sub').innerHTML = 'Дякуємо за покупку! Ми зв\'яжемось з вами найближчим часом.';
-    document.getElementById('ty-free-block').style.display = 'none';
-    document.getElementById('ty-full-block').style.display = 'block';
-    document.querySelector('.ty-note').style.display = 'none';
+    // Redirect to checkout page with data
+    var params = new URLSearchParams({ pn: pn, cn: cn, em: em });
+    window.location.href = 'checkout.html?' + params.toString();
+    return;
   }
 
   document.getElementById('form-screen').style.display = 'none';
