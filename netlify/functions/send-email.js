@@ -73,33 +73,33 @@ bodyContent +
 );
 }
 
-// ── FULL PLAN: 24 lessons ─────────────────────────────────
+// — FULL PLAN: 24 lessons —
 if (plan === “full”) {
 var allLessons = [
-[“1”,  “Урок 1 — Привітання”,           “Hello · My name is · How are you?”],
-[“2”,  “Урок 2 — Числа та вік”,          “One to ten · How old are you?”],
-[“3”,  “Урок 3 — Кольори та форми”,      “Red · Blue · Circle · Square”],
-[“4”,  “Урок 4 — Тварини”,               “Cat · Dog · Bird · Fish”],
-[“5”,  “Урок 5 — Їжа та напої”,          “Apple · Milk · Bread · Water”],
-[“6”,  “Урок 6 — Родина”,                “Mother · Father · Sister · Brother”],
-[“7”,  “Урок 7 — Тіло людини”,           “Head · Hands · Eyes · Nose”],
-[“8”,  “Урок 8 — Одяг”,                  “Shirt · Shoes · Hat · Dress”],
-[“9”,  “Урок 9 — Транспорт”,             “Car · Bus · Train · Plane”],
-[“10”, “Урок 10 — Дім та кімнати”,       “Kitchen · Bedroom · Door · Window”],
-[“11”, “Урок 11 — Природа”,              “Sun · Rain · Tree · Flower”],
-[“12”, “Урок 12 — Час та дні тижня”,    “Monday · Today · Morning · Night”],
-[“13”, “Урок 13 — Почуття”,              “Happy · Sad · Tired · Hungry”],
-[“14”, “Урок 14 — Спорт та хобі”,        “Football · Swimming · Art · Music”],
-[“15”, “Урок 15 — Школа”,                “Book · Pencil · Teacher · Class”],
-[“16”, “Урок 16 — Місто та місця”,       “Park · Shop · Hospital · Street”],
-[“17”, “Урок 17 — Кольори (розширені)”,  “Pink · Orange · Grey · Brown”],
-[“18”, “Урок 18 — Числа 11-20”,          “Eleven · Twelve · Twenty”],
-[“19”, “Урок 19 — Дієслова дій”,         “Run · Jump · Eat · Sleep”],
-[“20”, “Урок 20 — Питання”,              “What · Where · When · Why”],
-[“21”, “Урок 21 — Прикметники”,          “Big · Small · Fast · Slow”],
-[“22”, “Урок 22 — Пори року”,            “Spring · Summer · Autumn · Winter”],
-[“23”, “Урок 23 — Свята”,                “Birthday · Christmas · Easter”],
-[“24”, “Урок 24 — Повторення”,           “Review · A1 Level complete!”]
+[“1”,  “Урок 1 - Привітання”,           “Hello · My name is · How are you?”],
+[“2”,  “Урок 2 - Числа та вік”,          “One to ten · How old are you?”],
+[“3”,  “Урок 3 - Кольори та форми”,      “Red · Blue · Circle · Square”],
+[“4”,  “Урок 4 - Тварини”,               “Cat · Dog · Bird · Fish”],
+[“5”,  “Урок 5 - Їжа та напої”,          “Apple · Milk · Bread · Water”],
+[“6”,  “Урок 6 - Родина”,                “Mother · Father · Sister · Brother”],
+[“7”,  “Урок 7 - Тіло людини”,           “Head · Hands · Eyes · Nose”],
+[“8”,  “Урок 8 - Одяг”,                  “Shirt · Shoes · Hat · Dress”],
+[“9”,  “Урок 9 - Транспорт”,             “Car · Bus · Train · Plane”],
+[“10”, “Урок 10 - Дім та кімнати”,       “Kitchen · Bedroom · Door · Window”],
+[“11”, “Урок 11 - Природа”,              “Sun · Rain · Tree · Flower”],
+[“12”, “Урок 12 - Час та дні тижня”,    “Monday · Today · Morning · Night”],
+[“13”, “Урок 13 - Почуття”,              “Happy · Sad · Tired · Hungry”],
+[“14”, “Урок 14 - Спорт та хобі”,        “Football · Swimming · Art · Music”],
+[“15”, “Урок 15 - Школа”,                “Book · Pencil · Teacher · Class”],
+[“16”, “Урок 16 - Місто та місця”,       “Park · Shop · Hospital · Street”],
+[“17”, “Урок 17 - Кольори (розширені)”,  “Pink · Orange · Grey · Brown”],
+[“18”, “Урок 18 - Числа 11-20”,          “Eleven · Twelve · Twenty”],
+[“19”, “Урок 19 - Дієслова дій”,         “Run · Jump · Eat · Sleep”],
+[“20”, “Урок 20 - Питання”,              “What · Where · When · Why”],
+[“21”, “Урок 21 - Прикметники”,          “Big · Small · Fast · Slow”],
+[“22”, “Урок 22 - Пори року”,            “Spring · Summer · Autumn · Winter”],
+[“23”, “Урок 23 - Свята”,                “Birthday · Christmas · Easter”],
+[“24”, “Урок 24 - Повторення”,           “Review · A1 Level complete!”]
 ];
 
 ```
@@ -114,12 +114,12 @@ var bodyFull = (
   "Вітаємо, " + parent_name + "! &#127881;</div>" +
   "<p style='font-size:14px;color:#5A7080;line-height:1.7;margin:0;'>" +
   "Ви придбали повний курс для <strong>" + child_name + "</strong>. " +
-  "Всі 24 уроки нижче — відкривайте будь-який!" +
+  "Всі 24 уроки нижче  відкривайте будь-який!" +
   "</p></td></tr>" +
   "<tr><td style='padding:8px 28px 16px;'>" + rowsHtml + "</td></tr>"
 );
 
-var htmlFull = wrapEmail("Повний курс — 24 уроки для " + child_name, bodyFull);
+var htmlFull = wrapEmail("Повний курс  24 уроки для " + child_name, bodyFull);
 
 try {
   var resFull = await fetch("https://api.brevo.com/v3/smtp/email", {
@@ -132,7 +132,7 @@ try {
     body: JSON.stringify({
       sender: { name: "English Quest", email: process.env.SENDER_EMAIL },
       to: [{ email: email, name: parent_name }],
-      subject: child_name + " — повний курс English Quest (24 уроки)!",
+      subject: child_name + "  повний курс English Quest (24 уроки)!",
       htmlContent: htmlFull
     })
   });
@@ -151,7 +151,7 @@ try {
 
 }
 
-// ── FREE PLAN: 3 lessons ──────────────────────────────────
+// — FREE PLAN: 3 lessons —
 var bodyFree = (
 “<tr><td style='padding:24px 28px 16px;'>” +
 “<div style='font-size:20px;font-weight:900;color:#2A3A4A;margin-bottom:10px;'>” +
@@ -160,15 +160,15 @@ var bodyFree = (
 “<strong>” + child_name + “</strong> отримує 3 безкоштовні уроки. Натисніть щоб розпочати!” +
 “</p></td></tr>” +
 “<tr><td style='padding:0 28px 8px;'>” +
-lessonRow(“1”, “Урок 1 — Привітання”,      “Hello · My name is · How are you?”) +
-lessonRow(“2”, “Урок 2 — Числа та вік”,     “One to ten · How old are you?”) +
-lessonRow(“3”, “Урок 3 — Кольори та форми”, “Red · Blue · Circle · Square”) +
+lessonRow(“1”, “Урок 1 - Привітання”,      “Hello · My name is · How are you?”) +
+lessonRow(“2”, “Урок 2 - Числа та вік”,     “One to ten · How old are you?”) +
+lessonRow(“3”, “Урок 3 - Кольори та форми”, “Red · Blue · Circle · Square”) +
 “</td></tr>” +
 “<tr><td style='padding:0 28px 16px;'>” +
 “<div style='background:#FEF3C7;border:2px solid #FCD34D;border-radius:14px;" +
 "padding:14px 16px;font-size:14px;color:#92400E;font-weight:700;line-height:1.6;'>” +
 “💡 Порада: виконуйте уроки разом з “ + child_name +
-“ — кожен урок займає 10-20 хвилин.” +
+“  кожен урок займає 10-20 хвилин.” +
 “</div></td></tr>” +
 “<tr><td style='padding:0 28px 24px;text-align:center;'>” +
 “<a href='" + baseUrl + "' style='display:inline-block;" +
