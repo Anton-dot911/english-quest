@@ -759,17 +759,20 @@ async function handleSubmit(e) {
     fetch('https://formspree.io/f/mreavjjy', { method: 'POST', body: fd, headers: { 'Accept': 'application/json' } });
   } catch(err) {}
 
-  // Send email via Netlify Function (free = 3 lessons, full = 24 lessons)
-  try {
-    fetch('/.netlify/functions/send-email', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ parent_name: pn, child_name: cn, email: em, plan: currentPlan })
-    }).then(function(r){ return r.json(); }).then(function(d){
-      if (d.success) console.log('Email надіслано, план:', currentPlan);
-      else console.warn('Email error:', d.error);
-    });
-  } catch(err) {}
+  // Send email via Netlify Function — only for free plan
+  // Full plan email is sent by checkout.html after payment
+  if (currentPlan === 'free') {
+    try {
+      fetch('/.netlify/functions/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ parent_name: pn, child_name: cn, email: em, plan: 'free' })
+      }).then(function(r){ return r.json(); }).then(function(d){
+        if (d.success) console.log('Email надіслано, план: free');
+        else console.warn('Email error:', d.error);
+      });
+    } catch(err) {}
+  }
 
   // Update lesson links with child name
   var enc = encodeURIComponent(cn);
