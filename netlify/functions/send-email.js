@@ -1,4 +1,3 @@
-cat > /mnt/user-data/outputs/send-email.js << 'ENDOFFILE'
 exports.handler = async function(event) {
   if (event.httpMethod !== "POST") {
     return { statusCode: 405, body: "Method Not Allowed" };
@@ -67,13 +66,3 @@ exports.handler = async function(event) {
     return { statusCode: 500, body: JSON.stringify({ error: err.message }) };
   }
 };
-ENDOFFILE
-
-node --check /mnt/user-data/outputs/send-email.js && echo "SYNTAX OK"
-python3 -c "
-d = open('/mnt/user-data/outputs/send-email.js','rb').read()
-print('Bytes:', len(d))
-print('Non-ASCII:', sum(1 for b in d if b > 127))
-print('CRLF:', b'\r\n' in d)
-print('BOM:', d[:3] == b'\xef\xbb\xbf')
-"
