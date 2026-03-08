@@ -1,4 +1,4 @@
-export const handler = async (event) => {
+exports.handler = async function(event) {
 if (event.httpMethod !== “POST”) {
 return { statusCode: 405, body: “Method Not Allowed” };
 }
@@ -16,8 +16,9 @@ if (!email || !parent_name || !child_name) {
 return { statusCode: 400, body: “Missing fields” };
 }
 
-console.log(“Plan:”, plan, “Email:”, email);
+console.log(“Plan:”, plan, “| Email:”, email);
 console.log(“BREVO_API_KEY:”, !!process.env.BREVO_API_KEY);
+console.log(“SENDER_EMAIL:”, process.env.SENDER_EMAIL);
 
 var baseUrl = “https://english-quest-kids.netlify.app”;
 var enc = encodeURIComponent(child_name);
@@ -60,6 +61,8 @@ var lessons = [
 [24,“Lesson 24 - Review”,“A1 Level complete!”]
 ];
 
+var isFull = (plan === “full”);
+
 var rowsFree = row(1,“Lesson 1 - Greetings”,“Hello, My name is”)
 + row(2,“Lesson 2 - Numbers”,“One to ten”)
 + row(3,“Lesson 3 - Colors”,“Red, Blue, Green”);
@@ -69,7 +72,6 @@ for (var i = 0; i < lessons.length; i++) {
 rowsFull += row(lessons[i][0], lessons[i][1], lessons[i][2]);
 }
 
-var isFull = (plan === “full”);
 var subject = isFull
 ? (child_name + “ - English Quest full course (24 lessons)!”)
 : (parent_name + “, your 3 free lessons are ready!”);
@@ -91,8 +93,10 @@ var html = “<!DOCTYPE html><html><head><meta charset='UTF-8'></head>”
 + (isFull ? rowsFull : rowsFree)
 + “</div>”
 + “<div style='background:#f5f5f5;padding:12px;text-align:center;font-size:11px;color:#aaa;'>”
-+ “English Quest - english-quest-kids.netlify.app”
++ “English Quest”
 + “</div></div></body></html>”;
+
+var node_https = require(“https”);
 
 var payload = JSON.stringify({
 sender: { name: “English Quest”, email: process.env.SENDER_EMAIL },
@@ -101,25 +105,41 @@ subject: subject,
 htmlContent: html
 });
 
-try {
-var res = await fetch(“https://api.brevo.com/v3/smtp/email”, {
+return new Promise(function(resolve) {
+var options = {
+hostname: “api.brevo.com”,
+path: “/v3/smtp/email”,
 method: “POST”,
 headers: {
 “Accept”: “application/json”,
 “Content-Type”: “application/json”,
-“api-key”: process.env.BREVO_API_KEY
-},
-body: payload
-});
-var text = await res.text();
-console.log(“Brevo:”, res.status, text);
-return {
-statusCode: 200,
-headers: { “Access-Control-Allow-Origin”: “*” },
-body: JSON.stringify({ success: true, plan: plan })
-};
-} catch(err) {
-console.error(“Error:”, err.message);
-return { statusCode: 500, body: JSON.stringify({ error: err.message }) };
+“api-key”: process.env.BREVO_API_KEY,
+“Content-Length”: Buffer.byteLength(payload)
 }
+};
+
+```
+var req = node_https.request(options, function(res) {
+  var data = "";
+  res.on("data", function(chunk) { data += chunk; });
+  res.on("end", function() {
+    console.log("Brevo status:", res.statusCode, data);
+    resolve({
+      statusCode: 200,
+      headers: { "Access-Control-Allow-Origin": "*" },
+      body: JSON.stringify({ success: true, plan: plan })
+    });
+  });
+});
+
+req.on("error", function(err) {
+  console.error("HTTPS error:", err.message);
+  resolve({ statusCode: 500, body: JSON.stringify({ error: err.message }) });
+});
+
+req.write(payload);
+req.end();
+```
+
+});
 };
