@@ -102,3 +102,68 @@
 - Сценарій відео
 - Overlay підписи
 - Caption + хештеги
+
+-----
+
+## 🎨 Зображення — Leonardo.ai
+
+Після тексту поста **завжди** генеруй блок для зображення:
+
+```
+── 🎨 ЗОБРАЖЕННЯ ─────────────────────────────
+Сервіс: Leonardo.ai (безкоштовно)
+Модель: Leonardo Anime XL
+Розмір: [залежить від платформи — див. нижче]
+
+📋 Промпт (скопіюй в Leonardo.ai):
+"[англійський промпт — детальний опис сцени]"
+
+🚫 Negative prompt:
+"text, watermark, ugly, blurry, realistic photo,
+dark colors, scary, adult content"
+──────────────────────────────────────────────
+```
+
+### Розміри зображень по платформах
+
+|Платформа        |Розмір   |Формат   |
+|-----------------|---------|---------|
+|Instagram        |1080×1080|Square   |
+|Instagram Stories|1080×1920|Portrait |
+|Facebook         |1200×630 |Landscape|
+|TikTok обкладинка|1080×1920|Portrait |
+
+### Правила для промптів
+
+**Стиль Спарка (використовуй коли він у сцені):**
+
+```
+cute friendly blue baby dragon named Spark,
+big expressive round eyes, small book-shaped wings,
+breathing colorful ABC letters, soft rounded body,
+pink rosy cheeks, cheerful smile
+```
+
+**Загальний стиль курсу:**
+
+```
+children's book illustration style, soft pastel colors,
+warm cozy atmosphere, 2D cartoon flat art,
+bright and cheerful, educational theme,
+clean white or light blue background
+```
+
+**Адаптуй промпт до теми посту:**
+
+- Тема “кольори” → Спарк оточений кольоровими кулями або веселкою
+- Тема “алфавіт” → Спарк видихає літери ABC у повітря
+- Тема “числа” → Спарк тримає цифри як кульки
+- Тема “тварини” → Спарк з маленькими тваринками навколо
+- Тема “сім’я / батьки” → Спарк з дитиною і батьками
+- Загальна тема → Спарк з книгою або в класі
+
+**Тон зображення відповідає платформі:**
+
+- Instagram → яскраве, eye-catching, з емоцією
+- Facebook → тепле, сімейне, довіра
+- TikTok → динамічне, контрастне, з рухом у сцені
