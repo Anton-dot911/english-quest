@@ -28,7 +28,7 @@ min-height: 100%;
 }
 
 body {
-font-family: ‘Nunito’, sans-serif !important;
+font-family: 'Nunito', sans-serif !important;
 background: #5BC8F5 !important;
 color: #1a1a2e !important;
 min-height: 100vh;
@@ -65,7 +65,7 @@ font-size: 25px; flex-shrink: 0;
 box-shadow: 0 3px 0 #1A4FAA;
 }
 .logo-name {
-font-family: ‘Nunito’, sans-serif;
+font-family: 'Nunito', sans-serif;
 font-size: 28px;
 font-weight: 900;
 line-height: 1;
@@ -129,7 +129,7 @@ pointer-events: none;
 
 /* TITLE LINES — 3D plastic letters like photo */
 .ht {
-font-family: ‘Nunito’, sans-serif !important;
+font-family: 'Nunito', sans-serif !important;
 font-style: normal !important;
 font-weight: 900 !important;
 display: block;
@@ -263,7 +263,7 @@ display: flex; align-items: center; justify-content: center; flex-shrink: 0;
 .sbtn {
 display: flex; align-items: center; gap: 7px;
 padding: 11px 18px; border-radius: 50px; border: none;
-font-family: ‘Nunito’, sans-serif; font-size: 15px; font-weight: 900;
+font-family: 'Nunito', sans-serif; font-size: 15px; font-weight: 900;
 cursor: pointer; text-decoration: none; color: #fff;
 box-shadow: 0 4px 0 rgba(0,0,0,0.15); transition: all .18s;
 }
@@ -298,7 +298,7 @@ padding: 14px 16px;
 background: #edf1fa !important;
 border: 2px solid #CDD4E4;
 border-radius: 13px;
-font-size: 17px; font-family: ‘Nunito’, sans-serif; font-weight: 700;
+font-size: 17px; font-family: 'Nunito', sans-serif; font-weight: 700;
 color: #1a1a2e !important;
 outline: none; transition: all .2s;
 -webkit-appearance: none; appearance: none;
@@ -310,7 +310,7 @@ display: block; width: 100%;
 padding: 14px 40px 14px 16px;
 background: #edf1fa !important;
 border: 2px solid #CDD4E4; border-radius: 13px;
-font-size: 17px; font-family: ‘Nunito’, sans-serif; font-weight: 700;
+font-size: 17px; font-family: 'Nunito', sans-serif; font-weight: 700;
 color: #1a1a2e !important;
 outline: none; cursor: pointer;
 -webkit-appearance: none; appearance: none;
@@ -326,7 +326,7 @@ display: flex; align-items: center; justify-content: center; gap: 9px;
 width: 100%; padding: 17px 22px;
 background: linear-gradient(160deg, #FBBF24, #F5A623);
 color: #7C2D12;
-font-family: ‘Nunito’, sans-serif; font-size: 20px; font-weight: 900;
+font-family: 'Nunito', sans-serif; font-size: 20px; font-weight: 900;
 border: none; border-radius: 50px; cursor: pointer;
 box-shadow: 0 6px 0 #B07800, 0 10px 22px rgba(245,166,35,.4);
 transition: all .2s; margin-top: 6px; position: relative; top: 0;
@@ -373,7 +373,7 @@ box-shadow: 0 3px 0 #1A4FAA;
 display: flex; align-items: center; gap: 5px;
 background: linear-gradient(160deg, #FBBF24, #F5A623);
 color: #7C2D12; padding: 9px 14px; border-radius: 50px;
-font-family: ‘Nunito’, sans-serif; font-size: 13px; font-weight: 900;
+font-family: 'Nunito', sans-serif; font-size: 13px; font-weight: 900;
 text-decoration: none; white-space: nowrap; flex-shrink: 0;
 box-shadow: 0 3px 0 #B07800; transition: all .18s;
 }
@@ -386,7 +386,7 @@ text-align: center; margin-bottom: 20px; box-shadow: 0 6px 0 #b8c4d8, 0 10px 20p
 .ty-up a {
 display: inline-block;
 background: linear-gradient(145deg, #5B9EF7, #4A90E8);
-color: #fff; font-family: ‘Nunito’, sans-serif; font-size: 15px; font-weight: 900;
+color: #fff; font-family: 'Nunito', sans-serif; font-size: 15px; font-weight: 900;
 padding: 11px 22px; border-radius: 50px; text-decoration: none;
 box-shadow: 0 4px 0 #1A4FAA;
 }
@@ -641,7 +641,7 @@ async function handleSubmit(e){
 
   // 3. Send automatic email via Netlify Function → Brevo
   try {
-    fetch('/.netlify/functions/send-email', {
+    fetch('/api/send-email', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ parent_name: pn, child_name: cn, email: em })

@@ -140,7 +140,7 @@ text-transform: uppercase; letter-spacing: .8px; margin-bottom: 6px; }
 display: block; width: 100%; padding: 13px 16px;
 background: linear-gradient(145deg, #C8D8E4, #DCE8F2);
 border: none; border-radius: 14px;
-font-size: 16px; font-family: ‘Nunito’, sans-serif; font-weight: 700;
+font-size: 16px; font-family: 'Nunito', sans-serif; font-weight: 700;
 color: #2A3A4A; outline: none; -webkit-appearance: none;
 box-shadow: inset 3px 3px 8px rgba(140,162,180,1), inset -3px -3px 8px rgba(255,255,255,1);
 transition: box-shadow .2s;
@@ -174,7 +174,7 @@ font-size: 12px; font-weight: 700; color: #5A7080;
 display: flex; align-items: center; justify-content: center; gap: 10px;
 width: 100%; padding: 18px;
 background: linear-gradient(145deg, #28D068, #10A040);
-color: #022A1E; font-family: ‘Nunito’, sans-serif;
+color: #022A1E; font-family: 'Nunito', sans-serif;
 font-size: 20px; font-weight: 900;
 border: none; border-radius: 50px; cursor: pointer;
 box-shadow:
@@ -259,7 +259,7 @@ font-size: 14px; font-weight: 700; color: #2A3A4A; text-align: center; line-heig
 display: flex; align-items: center; justify-content: center; gap: 8px;
 width: 100%; max-width: 400px; padding: 16px;
 background: linear-gradient(145deg, #FFC840, #D89000);
-color: #5A2A00; font-family: ‘Nunito’, sans-serif;
+color: #5A2A00; font-family: 'Nunito', sans-serif;
 font-size: 17px; font-weight: 900;
 border: none; border-radius: 50px; cursor: pointer; text-decoration: none;
 box-shadow:
@@ -494,7 +494,7 @@ function handlePay() {
   // After 4.5s — send email then show success
   setTimeout(function() {
     // Send 24 lessons via Netlify Function
-    fetch('/.netlify/functions/send-email', {
+    fetch('/api/send-email', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ parent_name: pn, child_name: cn, email: em, plan: 'full' })
