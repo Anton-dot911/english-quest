@@ -19,7 +19,7 @@ overflow-x: hidden;
 -webkit-text-size-adjust: 100%;
 }
 body::before {
-content: ‘’;
+content: '';
 position: fixed; top: -80px; right: -100px;
 width: 320px; height: 320px; border-radius: 50%;
 background: radial-gradient(circle at 30% 30%, #DCE8F2, #B4C8D6);
@@ -27,7 +27,7 @@ box-shadow: inset -8px -8px 20px rgba(140,162,180,1), inset 8px 8px 20px rgba(25
 pointer-events: none; z-index: 0;
 }
 body::after {
-content: ‘’;
+content: '';
 position: fixed; bottom: -60px; left: -80px;
 width: 240px; height: 240px; border-radius: 50%;
 background: radial-gradient(circle at 30% 30%, #DCE8F2, #B4C8D6);
@@ -194,14 +194,14 @@ border: none !important;
   }
   /* Decorative background circles like landing */
   body::before {
-  content: ‘’;
+  content: '';
   position: fixed; top: -60px; right: -80px;
   width: 340px; height: 340px; border-radius: 50%;
   background: rgba(255,255,255,0.3);
   pointer-events: none; z-index: 0;
   }
   body::after {
-  content: ‘’;
+  content: '';
   position: fixed; bottom: -60px; left: -60px;
   width: 260px; height: 260px; border-radius: 50%;
   background: rgba(255,255,255,0.2);
@@ -218,13 +218,13 @@ box-shadow: 0 8px 0 var(–blue-shadow), 0 14px 36px rgba(42,106,200,0.45);
 position: relative; overflow: hidden;
 }
 .lesson-header::before {
-content: ‘’; position: absolute; top: -30%; right: -10%;
+content: ''; position: absolute; top: -30%; right: -10%;
 width: 220px; height: 220px;
 background: rgba(255,255,255,0.1); border-radius: 50%;
 pointer-events: none;
 }
 .lesson-header::after {
-content: ‘’; position: absolute; bottom: -40%; left: -5%;
+content: ''; position: absolute; bottom: -40%; left: -5%;
 width: 180px; height: 180px;
 background: rgba(255,255,255,0.07); border-radius: 50%;
 pointer-events: none;
@@ -440,7 +440,7 @@ box-shadow: 0 8px 0 var(–blue-shadow), 0 14px 40px rgba(42,106,200,0.45);
 display: none; animation: fadeIn 0.5s ease; position: relative; overflow: hidden;
 }
 .done-section::before {
-content: ‘’; position: absolute; top: -40px; right: -40px;
+content: ''; position: absolute; top: -40px; right: -40px;
 width: 220px; height: 220px; border-radius: 50%;
 background: rgba(255,255,255,0.1); pointer-events: none;
 }
@@ -838,7 +838,7 @@ const ctx = getCtx();
 [[523,0],[659,0.12],[784,0.24],[1047,0.38]].forEach(([freq,when]) => {
 const osc = ctx.createOscillator(), gain = ctx.createGain();
 osc.connect(gain); gain.connect(ctx.destination);
-osc.type = ‘sine’;
+osc.type = 'sine';
 osc.frequency.setValueAtTime(freq, ctx.currentTime+when);
 gain.gain.setValueAtTime(0.3, ctx.currentTime+when);
 gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime+when+0.4);
@@ -852,7 +852,7 @@ const ctx = getCtx();
 [[330,0],[220,0.15]].forEach(([freq,when]) => {
 const osc = ctx.createOscillator(), gain = ctx.createGain();
 osc.connect(gain); gain.connect(ctx.destination);
-osc.type = ‘sawtooth’;
+osc.type = 'sawtooth';
 osc.frequency.setValueAtTime(freq, ctx.currentTime+when);
 gain.gain.setValueAtTime(0.18, ctx.currentTime+when);
 gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime+when+0.25);
@@ -861,9 +861,9 @@ osc.start(ctx.currentTime+when); osc.stop(ctx.currentTime+when+0.25);
 } catch(e){}
 }
 function launchConfetti() {
-const emojis = [‘🎉’,‘⭐’,‘🎊’,‘✨’,‘🌟’,‘💫’,‘🎈’,‘🏆’];
+const emojis = ['🎉','⭐','🎊','✨','🌟','💫','🎈','🏆'];
 for(let i=0;i<22;i++) {
-const el = document.createElement(‘div’);
+const el = document.createElement('div');
 el.textContent = emojis[Math.floor(Math.random()*emojis.length)];
 el.style.cssText = `position:fixed;font-size:${22+Math.random()*18}px;left:${Math.random()*100}vw;top:-60px;z-index:9999;pointer-events:none;animation:confettiFall ${1.6+Math.random()*1.4}s ease-in forwards;animation-delay:${Math.random()*0.5}s;`;
 document.body.appendChild(el);
@@ -871,8 +871,8 @@ setTimeout(()=>el.remove(), 3500);
 }
 }
 (function(){
-const s=document.createElement(‘style’);
-s.textContent=’@keyframes confettiFall{0%{transform:translateY(0) rotate(0deg) scale(1);opacity:1}80%{opacity:1}100%{transform:translateY(105vh) rotate(720deg) scale(0.5);opacity:0}}’;
+const s=document.createElement('style');
+s.textContent='@keyframes confettiFall{0%{transform:translateY(0) rotate(0deg) scale(1);opacity:1}80%{opacity:1}100%{transform:translateY(105vh) rotate(720deg) scale(0.5);opacity:0}}';
 document.head.appendChild(s);
 })();
 
@@ -880,22 +880,22 @@ function speak(text) {
 if (!window.speechSynthesis) return;
 window.speechSynthesis.cancel();
 const u = new SpeechSynthesisUtterance(text);
-u.lang = ‘en-US’; u.rate = 0.8; u.pitch = 1.0;
+u.lang = 'en-US'; u.rate = 0.8; u.pitch = 1.0;
 const voices = window.speechSynthesis.getVoices();
-const preferred = [‘Google US English’,‘Google UK English Male’,‘Aaron’,‘Daniel’,‘Alex’,‘Tom’,‘Arthur’,‘Evan’];
+const preferred = ['Google US English','Google UK English Male','Aaron','Daniel','Alex','Tom','Arthur','Evan'];
 let chosen = null;
 for (const name of preferred) { chosen = voices.find(v => v.name === name); if (chosen) break; }
-if (!chosen) chosen = voices.find(v => v.lang.startsWith(‘en’) && v.name.toLowerCase().includes(‘male’));
-if (!chosen) chosen = voices.find(v => v.lang === ‘en-US’) || voices.find(v => v.lang.startsWith(‘en’));
+if (!chosen) chosen = voices.find(v => v.lang.startsWith('en') && v.name.toLowerCase().includes('male'));
+if (!chosen) chosen = voices.find(v => v.lang === 'en-US') || voices.find(v => v.lang.startsWith('en'));
 if (chosen) u.voice = chosen;
 window.speechSynthesis.speak(u);
 }
 if (window.speechSynthesis) { window.speechSynthesis.getVoices(); window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices(); }
 
 function goTo(n) {
-document.getElementById(‘sec’+state.currentSection).classList.remove(‘active’);
-document.getElementById(‘sec’+n).classList.add(‘active’);
-document.getElementById(‘sec’+n).scrollIntoView({behavior:‘smooth’,block:‘start’});
+document.getElementById('sec'+state.currentSection).classList.remove('active');
+document.getElementById('sec'+n).classList.add('active');
+document.getElementById('sec'+n).scrollIntoView({behavior:'smooth',block:'start'});
 sectionHistory.push(state.currentSection);
 state.currentSection = n;
 updateProgress(); updateBackBtn();
@@ -903,155 +903,155 @@ updateProgress(); updateBackBtn();
 function goBack() {
 if (!sectionHistory.length) return;
 const prev = sectionHistory.pop();
-document.getElementById(‘sec’+state.currentSection).classList.remove(‘active’);
-document.getElementById(‘sec’+prev).classList.add(‘active’);
-document.getElementById(‘sec’+prev).scrollIntoView({behavior:‘smooth’,block:‘start’});
+document.getElementById('sec'+state.currentSection).classList.remove('active');
+document.getElementById('sec'+prev).classList.add('active');
+document.getElementById('sec'+prev).scrollIntoView({behavior:'smooth',block:'start'});
 state.currentSection = prev;
 updateProgress(); updateBackBtn();
 }
 function updateBackBtn() {
-const b = document.getElementById(‘back-btn’);
-if (b) b.style.display = sectionHistory.length > 0 ? ‘flex’ : ‘none’;
+const b = document.getElementById('back-btn');
+if (b) b.style.display = sectionHistory.length > 0 ? 'flex' : 'none';
 }
 function updateProgress() {
 const pct = (state.stars/5)*100;
-document.getElementById(‘progress-fill’).style.width = pct+’%’;
-document.getElementById(‘progress-text’).textContent = state.stars+’ / 5 завдань’;
+document.getElementById('progress-fill').style.width = pct+'%';
+document.getElementById('progress-text').textContent = state.stars+' / 5 завдань';
 }
 function earnStar(n) {
-if (state.stars < n) { state.stars = n; document.getElementById(‘s’+n).classList.add(‘earned’); updateProgress(); }
+if (state.stars < n) { state.stars = n; document.getElementById('s'+n).classList.add('earned'); updateProgress(); }
 }
 function flipCard(el) {
-el.classList.toggle(‘flipped’);
-const hint = el.querySelector(’.word-hint’);
-if (el.classList.contains(‘flipped’)) {
-hint.textContent = ‘🔊 звучить…’;
-speak(el.querySelector(’.word-eng’).textContent);
-setTimeout(() => { if (el.classList.contains(‘flipped’)) hint.textContent = ‘натисни ще раз →’; }, 1400);
-} else { hint.textContent = ‘🔊 натисни →’; }
+el.classList.toggle('flipped');
+const hint = el.querySelector('.word-hint');
+if (el.classList.contains('flipped')) {
+hint.textContent = '🔊 звучить…';
+speak(el.querySelector('.word-eng').textContent);
+setTimeout(() => { if (el.classList.contains('flipped')) hint.textContent = 'натисни ще раз →'; }, 1400);
+} else { hint.textContent = '🔊 натисни →'; }
 }
 const mcAnswered = [false,false,false,false];
 function checkMC(el, type, qIdx) {
 if (mcAnswered[qIdx]) return;
 mcAnswered[qIdx] = true;
-const opts = el.parentElement.querySelectorAll(’.mc-opt’);
-opts.forEach(o => o.classList.add(‘done’));
+const opts = el.parentElement.querySelectorAll('.mc-opt');
+opts.forEach(o => o.classList.add('done'));
 el.classList.add(type);
-const fb = document.getElementById(‘mcf’+qIdx);
-if (type===‘correct’) { fb.textContent=‘✅ Правильно! Молодець!’; fb.className=‘mc-feedback ok’; state.totalScore++; playCorrect(); launchConfetti(); }
-else { fb.textContent=“❌ Не зовсім. Запам’ятай правильну відповідь!”; fb.className=‘mc-feedback err’; opts.forEach(o => { if(o.dataset.ans===‘correct’) o.classList.add(‘correct’); }); }
+const fb = document.getElementById('mcf'+qIdx);
+if (type==='correct') { fb.textContent='✅ Правильно! Молодець!'; fb.className='mc-feedback ok'; state.totalScore++; playCorrect(); launchConfetti(); }
+else { fb.textContent="❌ Не зовсім. Запам'ятай правильну відповідь!"; fb.className='mc-feedback err'; opts.forEach(o => { if(o.dataset.ans==='correct') o.classList.add('correct'); }); }
 state.totalMax++;
-if (mcAnswered.every(v=>v)) { document.getElementById(‘btn2’).style.display=‘block’; document.getElementById(‘mc-wait’).style.display=‘none’; earnStar(2); }
+if (mcAnswered.every(v=>v)) { document.getElementById('btn2').style.display='block'; document.getElementById('mc-wait').style.display='none'; earnStar(2); }
 }
 const fibAnswered = new Array(4).fill(false);
 function checkFib(idx, answer, display) {
 if (fibAnswered[idx]) return;
 fibAnswered[idx] = true;
-const inp = document.getElementById(‘fib’+idx);
-const fb  = document.getElementById(‘fibf’+idx);
-const btn = inp.closest(’.fib-item’).querySelector(’.fib-check-btn’);
+const inp = document.getElementById('fib'+idx);
+const fb  = document.getElementById('fibf'+idx);
+const btn = inp.closest('.fib-item').querySelector('.fib-check-btn');
 btn.disabled = true; inp.disabled = true;
 state.totalMax++;
 if (inp.value.trim().toLowerCase() === answer) {
-inp.classList.add(‘correct’); fb.textContent=‘✅ Правильно!’; fb.className=‘mc-feedback ok’; state.totalScore++; playCorrect(); launchConfetti();
+inp.classList.add('correct'); fb.textContent='✅ Правильно!'; fb.className='mc-feedback ok'; state.totalScore++; playCorrect(); launchConfetti();
 } else {
-inp.classList.add(‘wrong’); fb.textContent=‘❌ Правильна відповідь: ‘+display; fb.className=‘mc-feedback err’; inp.value=display; playWrong();
+inp.classList.add('wrong'); fb.textContent='❌ Правильна відповідь: '+display; fb.className='mc-feedback err'; inp.value=display; playWrong();
 }
-if (fibAnswered.every(v=>v)) { document.getElementById(‘btn3’).style.display=‘block’; document.getElementById(‘fib-wait’).style.display=‘none’; earnStar(3); }
+if (fibAnswered.every(v=>v)) { document.getElementById('btn3').style.display='block'; document.getElementById('fib-wait').style.display='none'; earnStar(3); }
 }
 function sbClick(idx, word) {
 const d = state.sbData[idx];
 let placed = false;
-document.getElementById(‘sbw’+idx).querySelectorAll(’.sb-word’).forEach(b => {
-if (!placed && b.textContent===word && !b.classList.contains(‘placed’)) { b.classList.add(‘placed’); placed=true; }
+document.getElementById('sbw'+idx).querySelectorAll('.sb-word').forEach(b => {
+if (!placed && b.textContent===word && !b.classList.contains('placed')) { b.classList.add('placed'); placed=true; }
 });
 if (placed) { d.placed.push(word); renderTarget(idx); }
 }
 function renderTarget(idx) {
 const d = state.sbData[idx];
-const t = document.getElementById(‘sbt’+idx);
-if (!d.placed.length) { t.innerHTML=’<span class="sb-placeholder">Натискай на слова нижче…</span>’; return; }
-t.innerHTML = d.placed.map((w,i) => `<span class="sb-placed-word" onclick="sbRemove(${idx},${i})">${w}</span>`).join(’’);
+const t = document.getElementById('sbt'+idx);
+if (!d.placed.length) { t.innerHTML='<span class="sb-placeholder">Натискай на слова нижче…</span>'; return; }
+t.innerHTML = d.placed.map((w,i) => `<span class="sb-placed-word" onclick="sbRemove(${idx},${i})">${w}</span>`).join('');
 }
 function sbRemove(idx, i) {
 const d = state.sbData[idx];
 const word = d.placed[i];
 d.placed.splice(i,1);
 let found = false;
-document.getElementById(‘sbw’+idx).querySelectorAll(’.sb-word’).forEach(b => {
-if (!found && b.textContent===word && b.classList.contains(‘placed’)) { found=true; b.classList.remove(‘placed’); }
+document.getElementById('sbw'+idx).querySelectorAll('.sb-word').forEach(b => {
+if (!found && b.textContent===word && b.classList.contains('placed')) { found=true; b.classList.remove('placed'); }
 });
 renderTarget(idx);
 }
 function sbReset(idx) {
 state.sbData[idx].placed = [];
-document.getElementById(‘sbw’+idx).querySelectorAll(’.sb-word’).forEach(b=>b.classList.remove(‘placed’));
-renderTarget(idx); document.getElementById(‘sbr’+idx).textContent=’’;
+document.getElementById('sbw'+idx).querySelectorAll('.sb-word').forEach(b=>b.classList.remove('placed'));
+renderTarget(idx); document.getElementById('sbr'+idx).textContent='';
 }
 const sbChecked = new Array(3).fill(false);
 function sbCheck(idx, correct) {
-const answer = state.sbData[idx].placed.join(’ ‘);
-const res = document.getElementById(‘sbr’+idx);
+const answer = state.sbData[idx].placed.join(' ');
+const res = document.getElementById('sbr'+idx);
 state.totalMax++;
 if (answer===correct) {
-res.textContent=‘✅ Чудово! Правильно!’; res.className=‘sb-result ok’; state.totalScore++; playCorrect(); launchConfetti();
+res.textContent='✅ Чудово! Правильно!'; res.className='sb-result ok'; state.totalScore++; playCorrect(); launchConfetti();
 } else {
-res.textContent=‘❌ Правильно: «’+correct+’»’; res.className=‘sb-result err’;
+res.textContent='❌ Правильно: «'+correct+'»'; res.className='sb-result err';
 sbReset(idx);
-setTimeout(() => { state.sbData[idx].placed=correct.split(’ ‘); renderTarget(idx); document.getElementById(‘sbw’+idx).querySelectorAll(’.sb-word’).forEach(b=>b.style.pointerEvents=‘none’); },600);
+setTimeout(() => { state.sbData[idx].placed=correct.split(' '); renderTarget(idx); document.getElementById('sbw'+idx).querySelectorAll('.sb-word').forEach(b=>b.style.pointerEvents='none'); },600);
 }
 sbChecked[idx] = true;
-document.getElementById(‘sbw’+idx).querySelectorAll(’.sb-word’).forEach(b=>b.style.pointerEvents=‘none’);
-if (sbChecked.every(v=>v)) { document.getElementById(‘btn4’).style.display=‘block’; document.getElementById(‘sb-wait’).style.display=‘none’; earnStar(4); }
+document.getElementById('sbw'+idx).querySelectorAll('.sb-word').forEach(b=>b.style.pointerEvents='none');
+if (sbChecked.every(v=>v)) { document.getElementById('btn4').style.display='block'; document.getElementById('sb-wait').style.display='none'; earnStar(4); }
 }
 let matchLeftSel=null, matchRightSel=null;
 function matchClick(side, idx, key) {
-const elId = side===‘left’?‘ml’+idx:‘mr’+idx;
+const elId = side==='left'?'ml'+idx:'mr'+idx;
 const el = document.getElementById(elId);
-if (el.classList.contains(‘matched’)) return;
-if (side===‘left’) { if(matchLeftSel!==null) document.getElementById(‘ml’+matchLeftSel.idx).classList.remove(‘selected’); matchLeftSel={idx,key}; el.classList.add(‘selected’); }
-else { if(matchRightSel!==null) document.getElementById(‘mr’+matchRightSel.idx).classList.remove(‘selected’); matchRightSel={idx,key}; el.classList.add(‘selected’); }
+if (el.classList.contains('matched')) return;
+if (side==='left') { if(matchLeftSel!==null) document.getElementById('ml'+matchLeftSel.idx).classList.remove('selected'); matchLeftSel={idx,key}; el.classList.add('selected'); }
+else { if(matchRightSel!==null) document.getElementById('mr'+matchRightSel.idx).classList.remove('selected'); matchRightSel={idx,key}; el.classList.add('selected'); }
 if (matchLeftSel && matchRightSel) {
-const lEl=document.getElementById(‘ml’+matchLeftSel.idx), rEl=document.getElementById(‘mr’+matchRightSel.idx);
+const lEl=document.getElementById('ml'+matchLeftSel.idx), rEl=document.getElementById('mr'+matchRightSel.idx);
 if (matchLeftSel.key===matchRightSel.key) {
-lEl.classList.remove(‘selected’); lEl.classList.add(‘matched’);
-rEl.classList.remove(‘selected’); rEl.classList.add(‘matched’);
+lEl.classList.remove('selected'); lEl.classList.add('matched');
+rEl.classList.remove('selected'); rEl.classList.add('matched');
 state.matchPairs++; state.totalScore++; state.totalMax++;
-document.getElementById(‘match-fb’).style.color=‘var(–correct)’;
-document.getElementById(‘match-fb’).textContent=‘✅ Правильна пара! (’+state.matchPairs+’/5)’; playCorrect(); launchConfetti();
-if (state.matchPairs===5) { document.getElementById(‘btn5’).style.display=‘block’; document.getElementById(‘match-wait’).style.display=‘none’; earnStar(5); }
+document.getElementById('match-fb').style.color='var(–correct)';
+document.getElementById('match-fb').textContent='✅ Правильна пара! ('+state.matchPairs+'/5)'; playCorrect(); launchConfetti();
+if (state.matchPairs===5) { document.getElementById('btn5').style.display='block'; document.getElementById('match-wait').style.display='none'; earnStar(5); }
 } else {
 state.totalMax++;
-lEl.classList.add(‘wrong-flash’); rEl.classList.add(‘wrong-flash’);
-document.getElementById(‘match-fb’).style.color=‘var(–wrong)’;
-document.getElementById(‘match-fb’).textContent=‘❌ Спробуй ще!’; playWrong();
-setTimeout(()=>{lEl.classList.remove(‘selected’,‘wrong-flash’);rEl.classList.remove(‘selected’,‘wrong-flash’);},500);
+lEl.classList.add('wrong-flash'); rEl.classList.add('wrong-flash');
+document.getElementById('match-fb').style.color='var(–wrong)';
+document.getElementById('match-fb').textContent='❌ Спробуй ще!'; playWrong();
+setTimeout(()=>{lEl.classList.remove('selected','wrong-flash');rEl.classList.remove('selected','wrong-flash');},500);
 }
 matchLeftSel=null; matchRightSel=null;
 }
 }
 function showDone() {
-document.getElementById(‘sec5’).classList.remove(‘active’);
-const d=document.getElementById(‘done-section’); d.style.display=‘block’;
-d.scrollIntoView({behavior:‘smooth’,block:‘start’});
-document.getElementById(‘final-score’).textContent=state.totalScore+’/’+state.totalMax;
+document.getElementById('sec5').classList.remove('active');
+const d=document.getElementById('done-section'); d.style.display='block';
+d.scrollIntoView({behavior:'smooth',block:'start'});
+document.getElementById('final-score').textContent=state.totalScore+'/'+state.totalMax;
 }
 function sendResult() {
 const now=new Date();
-const dateStr=now.toLocaleDateString(‘uk-UA’)+’ ‘+now.toLocaleTimeString(‘uk-UA’,{hour:‘2-digit’,minute:‘2-digit’});
+const dateStr=now.toLocaleDateString('uk-UA')+' '+now.toLocaleTimeString('uk-UA',{hour:'2-digit',minute:'2-digit'});
 const pct=Math.round((state.totalScore/state.totalMax)*100);
-const subj=encodeURIComponent(‘📚 Максим виконав Урок 4 — Моя сім'я’);
+const subj=encodeURIComponent('📚 Максим виконав Урок 4 — Моя сім'я');
 const body=encodeURIComponent(
-‘✅ УРОК 4 ВИКОНАНО!\n\n’+
-‘👦 Учень: Максим\n’+
-‘📖 Тема: Моя сім'я\n’+
-‘📅 Дата та час: ‘+dateStr+’\n\n’+
-‘📊 РЕЗУЛЬТАТ:\n’+
-’  Правильних відповідей: ‘+state.totalScore+’ з ‘+state.totalMax+’\n’+
-’  Відсоток: ‘+pct+’%\n\n’+
-‘⭐ Всі завдання виконано!’
+'✅ УРОК 4 ВИКОНАНО!\n\n'+
+'👦 Учень: Максим\n'+
+'📖 Тема: Моя сім'я\n'+
+'📅 Дата та час: '+dateStr+'\n\n'+
+'📊 РЕЗУЛЬТАТ:\n'+
+'  Правильних відповідей: '+state.totalScore+' з '+state.totalMax+'\n'+
+'  Відсоток: '+pct+'%\n\n'+
+'⭐ Всі завдання виконано!'
 );
-window.location.href=‘mailto:labunuszn@gmail.com?subject=’+subj+’&body=’+body;
+window.location.href='mailto:labunuszn@gmail.com?subject='+subj+'&body='+body;
 }
 </script>
 
