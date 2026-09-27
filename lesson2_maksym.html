@@ -146,11 +146,11 @@
 
   /* Lesson header — raised panel */
   .lesson-header {
-    background: linear-gradient(145deg, #6BAEF8, #3A7FD4) !important;
+    background: linear-gradient(160deg, #E8DFF7 0%, #D6E0F5 50%, #C8D8F0 100%) !important;
     box-shadow:
-      -8px -8px 22px rgba(120,180,255,0.4),
-       8px  8px 22px rgba(20,60,140,0.5),
-      inset 1px 1px 3px rgba(255,255,255,0.25) !important;
+      -9px -9px 22px rgba(255,255,255,1),
+       9px  9px 22px rgba(140,162,180,0.6),
+      inset 1px 1px 3px rgba(255,255,255,0.5) !important;
   }
 
   /* Result / feedback boxes */
@@ -209,33 +209,34 @@
 
   /* ── HEADER ── */
   .lesson-header {
-    background: linear-gradient(160deg, #5B9EF7 0%, #4A90E8 60%, #3A7FD4 100%);
+    background: linear-gradient(160deg, #E8DFF7 0%, #D6E0F5 50%, #C8D8F0 100%);
     border-radius: var(--radius-lg); padding: 28px 24px 24px;
-    color: white; text-align: center; margin-bottom: 18px;
-    box-shadow: 0 8px 0 var(--blue-shadow), 0 14px 36px rgba(42,106,200,0.45);
+    color: var(--text); text-align: center; margin-bottom: 18px;
+    box-shadow: -9px -9px 22px rgba(255,255,255,1), 9px 9px 22px rgba(140,162,180,0.6);
     position: relative; overflow: hidden;
   }
   .lesson-header::before {
     content: ''; position: absolute; top: -30%; right: -10%;
     width: 220px; height: 220px;
-    background: rgba(255,255,255,0.1); border-radius: 50%;
+    background: rgba(255,255,255,0.55); border-radius: 50%;
     pointer-events: none;
   }
   .lesson-header::after {
     content: ''; position: absolute; bottom: -40%; left: -5%;
     width: 180px; height: 180px;
-    background: rgba(255,255,255,0.07); border-radius: 50%;
+    background: rgba(255,255,255,0.35); border-radius: 50%;
     pointer-events: none;
   }
   .lesson-badge {
-    background: rgba(255,255,255,0.22);
+    background: rgba(255,255,255,0.55);
     display: inline-block; padding: 4px 16px; border-radius: 20px;
     font-size: 13px; font-weight: 800; letter-spacing: 1.5px;
     text-transform: uppercase; margin-bottom: 10px;
-    border: 1.5px solid rgba(255,255,255,0.35);
+    border: 1.5px solid rgba(255,255,255,0.8);
+    color: var(--text2);
   }
-  .lesson-title { font-size: 30px; font-weight: 900; margin-bottom: 6px; position: relative; z-index:1; text-shadow: 0 2px 8px rgba(0,0,0,0.15); }
-  .lesson-sub { font-size: 16px; opacity: 0.9; font-weight: 700; position: relative; z-index:1; }
+  .lesson-title { font-size: 30px; font-weight: 900; margin-bottom: 6px; position: relative; z-index:1; color: var(--text); }
+  .lesson-sub { font-size: 16px; font-weight: 700; position: relative; z-index:1; color: var(--text2); }
   .greeting-mascot { font-size: 54px; display: block; margin-bottom: 10px; animation: bounce 2.5s ease-in-out infinite; position: relative; z-index:1; }
   @keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 
